@@ -12,7 +12,7 @@ export class UserService extends HttpService {
     const data = await this.fetch<LoginResponse>({
       method: HttpMethod.GET,
       params: { username, password },
-      path: "/user",
+      path: "/login",
     });
     if (data.token) {
       this.setToken(data.token);
@@ -20,12 +20,12 @@ export class UserService extends HttpService {
     return data;
   }
 
-  async signUp(username: string, password: string): Promise<"success" | "conflict"> {
+  async register(username: string, password: string): Promise<"success" | "conflict"> {
     try {
       await this.fetch({
         method: HttpMethod.POST,
         body: { username, password },
-        path: "/user",
+        path: "/register",
       });
       return "success";
     } catch (e) {

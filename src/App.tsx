@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useRef, useState} from 'react';
 import {Router} from "@reach/router";
 import Home from './pages/Home';
 import Loadable from "react-loadable";
 import {Spin} from 'antd';
+import {StoreProvider} from 'simstate';
+import {UiStore} from './stores/UiStore';
+import {UserStore} from './stores/UserStore';
 import PaperUploadPage from "./pages/PaperUploadPage";
 
 const AsyncAnotherPage = Loadable({
@@ -11,12 +14,19 @@ const AsyncAnotherPage = Loadable({
 });
 
 function App() {
+
+
+  const [uiStore] = useState(() => new UiStore());
+  const [userStore] = useState(() => new UserStore);
+
   return (
-    <Router>
-      {/*<Home path="/"/>*/}
-      <AsyncAnotherPage path="/another"/>
-      <PaperUploadPage path="/"/>
-    </Router>
+    <StoreProvider stores={[uiStore, userStore]}>
+      <Router>
+        {/*<Home path="/"/>*/}
+        <AsyncAnotherPage path="/another"/>
+        <PaperUploadPage path="/"/>
+      </Router>
+    </StoreProvider>
   );
 }
 
