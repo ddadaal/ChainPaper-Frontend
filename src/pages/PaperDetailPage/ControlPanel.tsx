@@ -8,6 +8,8 @@ import CommentPanel from "./CommentPanel";
 import CollabrationControls from "./CollabrationControls";
 import styled from "styled-components";
 import PaperMeta from "./PaperMeta";
+import { useStore } from "simstate";
+import { UserStore } from "../../stores/UserStore";
 
 interface Props {
   paper: PaperInfo;
@@ -15,7 +17,7 @@ interface Props {
 
 const paperService = getApiService(PaperService);
 
-const StarStatistics = ({ paperId }) => {
+const StarStatistics = ({ paperId, readonly }) => {
   return (
     <Query call={() => paperService.getPaperStar(paperId)}>
       {(data, loading, _, refetch) => {
@@ -27,6 +29,7 @@ const StarStatistics = ({ paperId }) => {
               prefix={loading
                 ? <Spin size="small" />
                 : <Icon onClick={() => {
+                  if (readonly) { return; }
                   if (data.stared) {
                     message.success("取消打星成功！");
                     paperService.starPaper(paperId, "unstar").then(refetch);
@@ -47,7 +50,7 @@ const StarStatistics = ({ paperId }) => {
 
 }
 
-const ScoreStatistic = ({ paperId }) => {
+const ScoreStatistic = ({ paperId, readonly }) => {
   return (
     <Query call={() => paperService.getPaperScore(paperId)}>
       {(data, loading, _, refetch) => {
@@ -58,11 +61,15 @@ const ScoreStatistic = ({ paperId }) => {
               value={loading ? "" : data.score}
               prefix={loading
                 ? <Spin size="small" />
-                : <Rate allowHalf={true} defaultValue={data.score / 2} onChange={(value) => {
-                  message.success("打分成功！");
-                  console.log(value);
-                  paperService.scorePaper(paperId, value * 2).then(refetch);
-                }}
+                : <Rate
+                  disabled={readonly}
+                  allowHalf={true}
+                  defaultValue={data.score / 2}
+                  onChange={(value) => {
+                    message.success("打分成功！");
+                    console.log(value);
+                    paperService.scorePaper(paperId, value * 2).then(refetch);
+                  }}
                 />
               }
             />
@@ -81,6 +88,7 @@ const Panel = styled.div`
 const ControlPanel: React.FC<Props> = ({ paper }) => {
   const { paperId, comments } = paper;
 
+  const userStore = useStore(UserStore);
 
   return (
     <div>
@@ -90,10 +98,10 @@ const ControlPanel: React.FC<Props> = ({ paper }) => {
       <Panel>
         <Row gutter={16}>
           <Col span={12}>
-            <StarStatistics paperId={paperId} />
+            <StarStatistics readonly={!userStore.state.loggedIn} paperId={paperId} />
           </Col>
           <Col span={12}>
-            <ScoreStatistic paperId={paperId} />
+            <ScoreStatistic readonly={!userStore.state.loggedIn} paperId={paperId} />
           </Col>
         </Row>
       </Panel>

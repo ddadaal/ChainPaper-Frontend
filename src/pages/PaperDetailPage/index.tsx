@@ -12,7 +12,7 @@ import ControlPanel from "./ControlPanel";
 import styled from "styled-components";
 
 const HeightLimited = styled.div`
-  max-height: 80%;
+  max-height: 75vh;
   overflow: auto;
 `;
 
@@ -33,7 +33,7 @@ const PaperDetailPage: React.FunctionComponent<RouteComponentProps> = (props: an
           }
 
           return (
-            <Row gutter={32}>
+            <Row gutter={8}>
               <Col lg={16}>
                 <HeightLimited>
                   <LatexViewer paper={data.paper} />

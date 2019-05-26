@@ -5,6 +5,8 @@ import { PaperService } from "../../apis/paper/PaperService";
 import Query from "../../apis/Query";
 import { List, Comment, Tooltip, Icon, Form, Button, Input, message } from "antd";
 import { DEFAULT_AVATAR } from "../../utils";
+import { useStore } from "simstate";
+import { UserStore } from "../../stores/UserStore";
 
 const TextArea = Input.TextArea;
 
@@ -14,7 +16,7 @@ interface Props {
 
 const paperService = getApiService(PaperService);
 
-const Editor = ({ paperId, reload }) => {
+const Editor = ({ paperId, reload, disabled }) => {
 
   const [content, setContent] = useState("");
   const [sending, setSending] = useState(false);
@@ -22,7 +24,7 @@ const Editor = ({ paperId, reload }) => {
   return (
     <div>
       <Form.Item>
-        <TextArea rows={4} onChange={(e) => setContent(e.target.value)} value={content} />
+        <TextArea disabled={disabled} rows={4} onChange={(e) => setContent(e.target.value)} value={content} />
       </Form.Item>
       <Form.Item>
         <Button htmlType="submit" loading={sending} onClick={() => {
@@ -42,6 +44,7 @@ const Editor = ({ paperId, reload }) => {
 };
 
 const CommentPanel: React.FC<Props> = (props) => {
+  const userStore = useStore(UserStore);
   return (
     <Query call={() => paperService.getPaperComments(props.paperId)}>
       {(data, loading, _, refetch) => {
@@ -62,7 +65,7 @@ const CommentPanel: React.FC<Props> = (props) => {
               )}
             />
             <Comment avatar={DEFAULT_AVATAR} content={
-              <Editor paperId={props.paperId} reload={refetch} />
+              <Editor disabled={!userStore.state.loggedIn} paperId={props.paperId} reload={refetch} />
             } />
           </div>
         );

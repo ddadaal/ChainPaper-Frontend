@@ -21,16 +21,20 @@ const userService = getApiService(UserService);
 const CollabrationControls: React.FC<Props> = ({ paperInfo }) => {
   const userStore = useStore(UserStore);
 
-  const { username, userId } = userStore.state.user!!;
+  const { user } = userStore.state;
+
+  if (!user) {
+    return <div>请先登录！</div>;
+  }
 
   return (
-    <Query call={() => userService.getUserInfo(username)}>
+    <Query call={() => userService.getUserInfo(user.username)}>
       {(userInfo, loading, _, refetch) => {
         if (loading) {
           return <Loading />;
         }
 
-        const canEdit = paperInfo.authors.includes(userId);
+        const canEdit = paperInfo.authors.includes(user.userId);
 
         return (
           <div>
@@ -47,7 +51,7 @@ const CollabrationControls: React.FC<Props> = ({ paperInfo }) => {
             }} disabled={canEdit}>申请合作</Button>
             <Button onClick={() => {
 
-            }} disabled={userId !== paperInfo.authors[0]}>
+            }} disabled={user.userId !== paperInfo.authors[0]}>
               邀请合作者
             </Button>
           </div>

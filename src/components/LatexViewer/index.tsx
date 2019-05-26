@@ -13,8 +13,8 @@ const LatexViewer: React.FC<Props> = ({ paper }: Props) => {
     <div>
       <div
         style={{ fontFamily: 'SimHei', fontSize: '24px', textAlign: 'center' }}>{paper.title}</div>
-      <div style={{ margin: '20px' }}>
-        <div style={{ marginLeft: '15%', marginRight: '15%' }}>
+      <div style={{ margin: "8px" }}>
+        <div>
           <Row>
             <Col span={3}>
               <p style={{
@@ -37,7 +37,7 @@ const LatexViewer: React.FC<Props> = ({ paper }: Props) => {
         </div>
       </div>
       <div style={{ margin: '20px' }}>
-        <div style={{ marginLeft: '15%', marginRight: '15%' }}>
+        <div>
           <Row>
             <Col span={3}>
               <p style={{
