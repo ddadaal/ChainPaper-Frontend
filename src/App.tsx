@@ -1,8 +1,9 @@
 import React from 'react';
-import { Router } from "@reach/router";
+import {Router} from "@reach/router";
 import Home from './pages/Home';
 import Loadable from "react-loadable";
-import { Spin } from 'antd';
+import {Spin} from 'antd';
+import PaperUploadPage from "./pages/PaperUploadPage";
 
 const AsyncAnotherPage = Loadable({
   loader: () => import("./pages/AnotherPage"),
@@ -12,8 +13,9 @@ const AsyncAnotherPage = Loadable({
 function App() {
   return (
     <Router>
-      <Home path="/" />
-      <AsyncAnotherPage path="/another" />
+      {/*<Home path="/"/>*/}
+      <AsyncAnotherPage path="/another"/>
+      <PaperUploadPage path="/"/>
     </Router>
   );
 }
