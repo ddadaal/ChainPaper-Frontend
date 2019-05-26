@@ -15,4 +15,5 @@ export const layoutConstants = {
   headerIconColor: "#ffffff",
   headerIconBackgroundColor: "#1890FF",
   headerBackgrounColor: "#001529",
+  maxWidth: 1200,
 };
