@@ -7,6 +7,7 @@ import PaperListItem from "../../components/PaperList/PaperListItem";
 import { PaperInfo } from "../../models/paper";
 
 interface Props {
+  title: React.ReactNode;
   paperIds: string[];
   show: boolean;
   close(): void;
@@ -16,7 +17,7 @@ const paperService = getApiService(PaperService);
 
 const PaperModal: React.FC<Props> = (props) => {
   return (
-    <Modal visible={props.show} title={"论文"} onCancel={props.close} onOk={props.close}>
+    <Modal visible={props.show} title={props.title} onCancel={props.close} onOk={props.close}>
       <Query call={() => Promise.all(props.paperIds.map((id) => paperService.getPaper(id)))}>
         {(data, loading) => (
           <List

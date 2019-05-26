@@ -23,13 +23,8 @@ margin: 20px 0;
 
 const ProfilePage: React.FC<Props> = (props) => {
   const { userInfo } = props;
-  const [modalShow, setModalShow] = useState(false);
-  const [paperIds, setPaperIds] = useState([] as string[]);
-
-  const showModal = useCallback((ids: string[]) => {
-    setPaperIds(ids);
-    setModalShow(true);
-  }, []);
+  const [uploadModalShow, setUploadModalShow] = useState(false);
+  const [collabrationModalShow, setCollabrationModalShow] = useState(false);
 
   return (
     <div>
@@ -41,20 +36,23 @@ const ProfilePage: React.FC<Props> = (props) => {
 
           <DescriptionItem label="角色"><span>{userInfo.role}</span></DescriptionItem>
           <DescriptionItem label="上传论文数">
-            <a onClick={() => showModal(userInfo.paperIds)}>
+            <a onClick={() => setUploadModalShow(true)}>
               {userInfo.paperIds.length}
             </a>
           </DescriptionItem>
           <DescriptionItem label="参与论文数">
-            <a onClick={() => showModal(userInfo.paperIdsInCollabration)}>
+            <a onClick={() => setCollabrationModalShow(true)}>
               {userInfo.paperIdsInCollabration.length}
             </a>
           </DescriptionItem>
           <DescriptionItem label="评分"><span>{userInfo.score}</span></DescriptionItem>
 
         </Descriptions>
-        <PaperModal paperIds={paperIds} show={modalShow} close={() => setModalShow(false)} />
+        <PaperModal title="我上传的论文" paperIds={userInfo.paperIds} show={uploadModalShow} close={() => setUploadModalShow(false)} />
+        <PaperModal title="我参与的论文" paperIds={userInfo.paperIdsInCollabration} show={collabrationModalShow} close={() => setCollabrationModalShow(false)} />
+
       </div>
+
       <div>
         <Title>
           我收到的合作请求
