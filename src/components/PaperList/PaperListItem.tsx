@@ -3,6 +3,7 @@ import { List, Icon } from "antd";
 import { PaperInfo } from "../../models/paper";
 import { limitLength } from "../../utils";
 import { Link } from "@reach/router";
+import ContributorAvatar from "../ContributorAvatar";
 
 interface Props {
   item: PaperInfo;
@@ -24,7 +25,10 @@ const PaperListItem: React.FC<Props> = ({ item }) => (
   >
     <List.Item.Meta
       title={<Link to={`/papers/${item.paperId}`}>{limitLength(item.paper.abstractContent)}</Link>}
-      description={`${item.authors.join(", ")} | ${item.uploadTime}`}
+      description={<>
+        <span>{item.uploadTime}</span> | {"  "}
+        {item.authors.map((author) => <ContributorAvatar key={author} userId={author} />)}
+      </>}
     >
     </List.Item.Meta>
     {limitLength(item.paper.abstractContent, 300)}
