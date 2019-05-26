@@ -18,7 +18,7 @@ export type PaperDraft = {
   acknowledgement: string;
 }
 
-export type Comment = {
+export type PaperComment = {
   userId: string;
   time: string; // Unix UTC时间戳
   content: string;
@@ -32,6 +32,6 @@ export type PaperInfo = {
   uploadTime: string; // Unix UTC时间戳
   score: number; // 10分满分
   stars: number; // Star数
-  comments: Comment[]; // 评论数量
+  comments: PaperComment[]; // 评论数量
   state: "open" | "submitted"; // 开放可评论；已提交
 }

@@ -1,12 +1,18 @@
-import {PaperService, PaperIdResponse, PaperListResponse} from "./PaperService";
-import {PaperDraft, PaperInfo} from "../../models/paper";
-import {HttpMethod} from "../HttpService";
+import { PaperService, PaperIdResponse, PaperListResponse } from "./PaperService";
+import { PaperDraft, PaperInfo, PaperComment } from "../../models/paper";
+import { HttpMethod } from "../HttpService";
+import { sleepMs } from "../../utils";
+
+const comments = [
+  { userId: "2", time: "1232132132131", content: "好！", stars: 10 },
+  { userId: "3", time: "1232142141", content: "好！！！", stars: 4 },
+];
 
 export const papers: PaperInfo[] = [
   {
     paperId: "1", authors: ["123", "1"], paper: {
       title: "Bug Localization with Semantic and Structural Features using Convolutional Neural Network and Cascade Forest",
-      refs: [{type: "published", doi: "10.1145/3210459.3210469"}, {
+      refs: [{ type: "published", doi: "10.1145/3210459.3210469" }, {
         type: "chainpaper",
         paperId: "2",
         content: "Poor H V. An introduction to signal detection and estimation[M]. Springer Science & Business Media, 2013."
@@ -18,34 +24,46 @@ export const papers: PaperInfo[] = [
       conclusion: "1321",
       acknowledgement: "1232132121",
     },
-    uploadTime: "1231232131", score: 10, stars: 10, comments: [
-      {userId: "2", time: "1232132132131", content: "好！", stars: 10},
-      {userId: "3", time: "1232142141", content: "好！！！", stars: 4},
-    ],
+    uploadTime: "1231232131", score: 10, stars: 10, comments,
     state: "open",
   }
 ];
 
 export class PaperServiceMock extends PaperService {
   async uploadPaper(paperDraft: PaperDraft): Promise<PaperIdResponse> {
-    return {paperId: "123"};
+    return { paperId: "123" };
   }
 
   async modifyPaper(paperId: string, paperDraft: PaperDraft): Promise<PaperIdResponse> {
-    return {paperId: "123"};
+    return { paperId: "123" };
   }
 
   async getPapers(): Promise<{ papers: PaperInfo[] }> {
-    return {papers};
+    return { papers };
   }
 
   async getPaper(paperId: string): Promise<{ paper: PaperInfo }> {
-    return {paper: papers[0]};
+    return { paper: papers[0] };
   }
 
   async scorePaper(paperId: string, score: number) {
 
   }
+
+
+  async getPaperStar(paperId: string): Promise<{ stars: number; stared: boolean }> {
+    return { stars: 9, stared: Math.random() < 0.5 };
+  }
+
+  async getPaperScore(paperId: string): Promise<{ score: number; myScore: number }> {
+    return { score: 8, myScore: Math.random() < 0.5 ? 4 : -1 };
+  }
+
+  async getPaperComments(paperId: string): Promise<{ comments: PaperComment[] }> {
+    await sleepMs(1000);
+    return { comments };
+  }
+
 
   async starPaper(paperId: string, operation: "star" | "unstar") {
 
