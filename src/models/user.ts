@@ -6,7 +6,7 @@ export interface UserInfo {
   userId: string;
   username: string;
   role: Role;
-  papers: PaperInfo[];
+  paperIds: string[];
   score: number;
   collabrationInvitationIds: string[];
   collabrationRequestIds: string[];

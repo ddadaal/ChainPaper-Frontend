@@ -19,6 +19,7 @@ const process = [
   {name: "上传论文", description: "上传你的论文"},
   {name: "查看用户评论", description: "查看用户对你的论文的评价"},
   {name: "邀请合作", description: "邀请他人一起完善论文"},
+  {name: "获得成功", description: "发布论文，走上人生巅峰！"}
 ];
 
 //
@@ -81,7 +82,7 @@ const Container = styled.div`
   #vertical {
     display: block;
   }
-  
+
   #horizontal {
     display: none;
   }
@@ -90,7 +91,7 @@ const Container = styled.div`
     #vertical {
       display: none;
     }
-    
+
     #horizontal {
       display: block;
     }

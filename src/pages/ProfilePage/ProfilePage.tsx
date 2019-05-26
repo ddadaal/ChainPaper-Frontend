@@ -10,6 +10,7 @@ const DescriptionItem = Descriptions.Item;
 
 interface Props {
   userInfo: UserInfo;
+  refetch(): void;
 }
 
 const Title = styled.h4`
@@ -35,25 +36,25 @@ const ProfilePage: React.FC<Props> = (props) => {
           <DescriptionItem label="角色"><span>{userInfo.role}</span></DescriptionItem>
           <DescriptionItem label="上传论文数">
             <a onClick={() => setModalShow(true)}>
-              {userInfo.papers.length}
+              {userInfo.paperIds.length}
             </a>
           </DescriptionItem>
           <DescriptionItem label="评分"><span>{userInfo.score}</span></DescriptionItem>
 
         </Descriptions>
-        <PaperModal papers={userInfo.papers} show={modalShow} close={() => setModalShow(false)} />
+        <PaperModal paperIds={userInfo.paperIds} show={modalShow} close={() => setModalShow(false)} />
       </div>
       <div>
         <Title>
           我收到的合作请求
         </Title>
-        <CollabrationRequestTable requestIds={userInfo.collabrationRequestIds} />
+        <CollabrationRequestTable refetch={props.refetch} requestIds={userInfo.collabrationRequestIds} />
       </div>
       <div>
         <Title>
           我收到的合作邀请
         </Title>
-        <CollabrationInvitationTable invitationIds={userInfo.collabrationInvitationIds} />
+        <CollabrationInvitationTable refetch={props.refetch} invitationIds={userInfo.collabrationInvitationIds} />
       </div>
 
       {/* <Row gutter={16}>

@@ -7,7 +7,7 @@ import PaperListItem from "../../components/PaperList/PaperListItem";
 import { PaperInfo } from "../../models/paper";
 
 interface Props {
-  papers: PaperInfo[];
+  paperIds: string[];
   show: boolean;
   close(): void;
 }
@@ -17,11 +17,17 @@ const paperService = getApiService(PaperService);
 const PaperModal: React.FC<Props> = (props) => {
   return (
     <Modal visible={props.show} title={"我发的论文"} onCancel={props.close} onOk={props.close}>
-      <List
-        dataSource={props.papers}
-        pagination={{ pageSize: 5 }}
-        renderItem={(item) => <PaperListItem item={item} />}
-      />
+      <Query call={() => Promise.all(props.paperIds.map((id) => paperService.getPaper(id)))}>
+        {(data, loading) => (
+          <List
+            dataSource={data}
+            pagination={{ pageSize: 5 }}
+            loading={loading}
+            renderItem={(item) => <PaperListItem item={item.paper} />}
+          />
+        )}
+      </Query>
+
     </Modal >
   )
 };

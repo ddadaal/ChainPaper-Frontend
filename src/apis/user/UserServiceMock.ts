@@ -25,7 +25,7 @@ export default class UserServiceMock extends UserService {
       userId,
       username: `${userId}'s name`,
       role: "student",
-      papers,
+      paperIds: papers.map(x => x.paperId),
       score: 4.6,
       collabrationInvitationIds: [
         "123", "1234"

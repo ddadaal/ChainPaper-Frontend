@@ -6,6 +6,7 @@ import { Table } from "antd";
 
 interface Props {
   requestIds: string[];
+  refetch(): void;
 }
 
 const collabrationService = getApiService(CollabrationService);
@@ -18,7 +19,7 @@ const CollabrationRequestTable: React.FC<Props> = (props) => {
     <Query call={() => Promise.all(props.requestIds.map((id) => (
       collabrationService.getCollabrationRequestInfo(id)
     )))}>
-      {(data, loading, _, refetch) => {
+      {(data, loading, _) => {
 
 
         const columns = [
@@ -33,7 +34,7 @@ const CollabrationRequestTable: React.FC<Props> = (props) => {
                 <a key={"accept"} onClick={() => {
                   console.log("123");
                   collabrationService.acceptCollabrationRequest(record.collabrationRequestId);
-                  refetch();
+                  props.refetch();
                 }}>接受</a>
               )
 

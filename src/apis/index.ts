@@ -6,7 +6,7 @@ import { PaperService } from "./paper/PaperService";
 import { CollabrationService } from "./collabration/CollabrationService";
 import { CollabrationServiceMock } from "./collabration/CollabrationServiceMock";
 
-export const USE_MOCK = false;
+export const USE_MOCK = true;
 
 const services = [
   [UserService, USE_MOCK ? UserServiceMock : UserService],

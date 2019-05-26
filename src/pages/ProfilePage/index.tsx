@@ -27,13 +27,13 @@ const Profile: React.FC<RouteComponentProps> = (props) => {
   } else {
     content = (
       <Query call={() => getApiService(UserService).getUserInfo(userStore.state.user!!.username)}>
-        {(data, loading) => {
+        {(data, loading, _, refetch) => {
           if (loading) {
             return <Loading />;
           }
 
           return (
-            <ProfilePage userInfo={data} />
+            <ProfilePage refetch={refetch} userInfo={data} />
           );
         }}
       </Query>
