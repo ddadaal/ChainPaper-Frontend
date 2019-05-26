@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { Router } from "@reach/router";
-import Home from './pages/Home';
+import HomePage from './pages/HomePage';
 import Loadable from "react-loadable";
 import { Spin } from 'antd';
 import { StoreProvider } from 'simstate';
@@ -9,9 +9,15 @@ import { UserStore } from './stores/UserStore';
 import RootLayout from './layouts/RootLayout';
 import Loading from './components/Loading';
 import PaperUploadPage from './pages/PaperUploadPage';
+import ExplorePage from './pages/Explore';
 
 const AsyncAnotherPage = Loadable({
   loader: () => import("./pages/AnotherPage"),
+  loading: Loading,
+});
+
+const AsyncExplorePage = Loadable({
+  loader: () => import("./pages/Explore"),
   loading: Loading,
 });
 
@@ -26,7 +32,8 @@ function App() {
 
       <RootLayout>
         <Router>
-          <Home path="/" />
+          <HomePage path="/" />
+          <AsyncExplorePage path="/explore" />
           <AsyncAnotherPage path="/another" />
           <PaperUploadPage path="/paper" />
 

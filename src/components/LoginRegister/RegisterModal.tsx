@@ -5,7 +5,7 @@ import { Modal, Button, Form, Input, Icon, message, Select } from "antd";
 import { Link } from "@reach/router";
 import { FormWrappedProps } from "antd/lib/form/interface";
 import { WrappedFormUtils } from "antd/lib/form/Form";
-import { useApiService } from "../../apis";
+import { getApiService } from "../../apis";
 import { UserService } from "../../apis/user/UserService";
 import { UserStore } from "../../stores/UserStore";
 const { Option } = Select;
@@ -24,7 +24,7 @@ const RegisterModal = Form.create({ name: "normal_register" })((props: { form: W
     validateFields(async (err, values) => {
       if (!err) {
         const { username, password, role } = values;
-        const userService = useApiService(UserService);
+        const userService = getApiService(UserService);
         const res = await userService.register(username, password, role);
         if (res.token) {
           uiStore.toggleRegisterModalShown();

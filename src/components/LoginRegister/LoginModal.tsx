@@ -5,7 +5,7 @@ import { Modal, Button, Form, Input, Icon, message } from "antd";
 import { Link } from "@reach/router";
 import { FormWrappedProps } from "antd/lib/form/interface";
 import { WrappedFormUtils } from "antd/lib/form/Form";
-import { useApiService } from "../../apis";
+import { getApiService } from "../../apis";
 import { UserService } from "../../apis/user/UserService";
 import { UserStore } from "../../stores/UserStore";
 
@@ -23,7 +23,7 @@ const LoginModal = Form.create({ name: "normal_login" })((props: { form: Wrapped
     validateFields(async (err, values) => {
       if (!err) {
         const { username, password } = values;
-        const userService = useApiService(UserService);
+        const userService = getApiService(UserService);
         const res = await userService.login(username, password);
         if (res.token) {
           uiStore.toggleLoginModalShown();

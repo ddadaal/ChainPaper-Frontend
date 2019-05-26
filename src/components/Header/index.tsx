@@ -44,11 +44,14 @@ export const horizontalMenuStyle: React.CSSProperties = {
 
 
 export const Head = styled(AntdHeader)`
+&& {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: ${layoutConstants.headerHeight}px;
   padding: 4px;
+
+}
 `;
 
 export function HeaderNavMenu({ vertical, selectedKeys, to }:

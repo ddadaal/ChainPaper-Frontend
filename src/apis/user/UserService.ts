@@ -40,6 +40,10 @@ export class UserService extends HttpService {
 
   }
 
+  async getUserInfo(userId: string) {
+    
+  }
+
   setToken(token: string) {
     if (token) {
       this.axios.defaults.headers.common.Authorization = `Bearer ${token}`;
