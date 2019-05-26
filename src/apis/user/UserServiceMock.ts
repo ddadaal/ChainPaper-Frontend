@@ -27,8 +27,10 @@ export default class UserServiceMock extends UserService {
       role: "student",
       papers,
       score: 4.6,
-      collabrationInvitationIds: [],
-      collabrationRequestIds: [],
+      collabrationInvitationIds: [
+        "123", "1234"
+      ],
+      collabrationRequestIds: ["123", "1234"],
     };
   }
 }

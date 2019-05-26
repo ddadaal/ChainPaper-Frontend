@@ -5,33 +5,31 @@ import Query from "../../apis/Query";
 import { Table } from "antd";
 
 interface Props {
-  requestIds: string[];
+  invitationIds: string[];
 }
 
 const collabrationService = getApiService(CollabrationService);
 
-
-
-const CollabrationRequestTable: React.FC<Props> = (props) => {
+const CollabrationInvitationTable: React.FC<Props> = (props) => {
 
 
   return (
-    <Query call={() => Promise.all(props.requestIds.map((id) => (
-      collabrationService.getCollabrationRequestInfo(id)
+    <Query call={() => Promise.all(props.invitationIds.map((id) => (
+      collabrationService.getCollabrationInvitationInfo(id)
     )))}>
       {(data, loading, _, refetch) => {
 
 
         const columns = [
-          { title: "请求ID", dataIndex: "collabrationRequestId", key: "collabrationRequestId" },
+          { title: "邀请ID", dataIndex: "collabrationInvitationId", key: "collabrationInvitationId" },
           { title: "时间", dataIndex: "time", key: "time" },
-          { title: "请求者", dataIndex: "requesterId", key: "requesterId" },
+          { title: "邀请者", dataIndex: "inviterId", key: "inviterId" },
           { title: "文章ID", dataIndex: "paperId", key: "paperId" },
           {
             title: "操作", key: "actions", render: (text, record) => {
               return (
                 <a onClick={() => {
-                  collabrationService.acceptCollabrationRequest(record.collabrationRequestId);
+                  collabrationService.acceptCollabrationInvitation(record.collabrationRequestId);
                   refetch();
                 }}>接受</a>
               )
@@ -53,4 +51,4 @@ const CollabrationRequestTable: React.FC<Props> = (props) => {
   return <div />;
 };
 
-export default CollabrationRequestTable;
+export default CollabrationInvitationTable;

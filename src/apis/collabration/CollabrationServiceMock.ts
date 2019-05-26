@@ -20,11 +20,11 @@ export class CollabrationServiceMock extends CollabrationService {
   }
 
   async getCollabrationInvitationInfo(collabrationInvitationId: string): Promise<CollabrationInvitation> {
-    return { time: "1231231212", inviteeId: "123", inviterId: "123", paperId: "123" };
+    return { collabrationInvitationId, time: "1231231212", inviteeId: "123", inviterId: "123", paperId: "123" };
   }
 
   async getCollabrationRequestInfo(collabrationRequestId: string): Promise<CollabrationRequest> {
-    return { time: "1231231212", requesteeId: "123", requesterId: "123", paperId: "123" };
+    return { collabrationRequestId, time: "1231231212", requesteeId: "123", requesterId: "123", paperId: "123" };
 
   };
 }

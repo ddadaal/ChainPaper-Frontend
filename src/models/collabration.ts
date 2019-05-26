@@ -1,4 +1,5 @@
 export interface CollabrationInvitation {
+  collabrationInvitationId: string;
   time: string;
   inviteeId: string;
   inviterId: string;
@@ -6,6 +7,7 @@ export interface CollabrationInvitation {
 }
 
 export interface CollabrationRequest {
+  collabrationRequestId: string;
   time: string;
   requesteeId: string;
   requesterId: string;

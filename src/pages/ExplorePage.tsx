@@ -8,6 +8,7 @@ import Query from "../apis/Query";
 import { limitLength } from "../utils";
 import FunctionLayout from "../layouts/FunctionLayout";
 import styled from "styled-components";
+import PaperListItem from "../components/PaperList/PaperListItem";
 
 const { Title, Paragraph } = Typography;
 
@@ -27,13 +28,6 @@ const Results = styled.div`
 
   margin: 0 auto;
 `;
-
-const IconText = ({ type, text }: { type: string; text: React.ReactNode; }) => (
-  <span>
-    <Icon type={type} style={{ marginRight: 8 }} />
-    {text}
-  </span>
-);
 
 const ExplorePage: React.FunctionComponent<Props> = () => {
   return (
@@ -58,21 +52,8 @@ const ExplorePage: React.FunctionComponent<Props> = () => {
 
                   pagination={{ pageSize: 10 }}
                   renderItem={(item) => (
-                    <List.Item
-                      actions={[
-                        <IconText type="star-o" text={item.stars} />,
-                        <IconText type="message" text={item.comments.length} />,
-                      ]}
-                    >
-                      <List.Item.Meta
-                        title={<Link to={`/papers/${item.paperId}`}>{limitLength(item.paper.abstractContent)}</Link>}
-                        description={`${item.authors.join(", ")} | ${item.uploadTime}`}
-                      >
-                      </List.Item.Meta>
-                      {limitLength(item.paper.abstractContent, 300)}
 
-                    </List.Item>
-
+                    <PaperListItem item={item} />
                   )}
                 />
 
