@@ -8,17 +8,9 @@ import {UiStore} from './stores/UiStore';
 import {UserStore} from './stores/UserStore';
 import RootLayout from './layouts/RootLayout';
 import Loading from './components/Loading';
-import PaperUploadPage from './pages/PaperUploadPage';
-import ExplorePage from './pages/Explore';
-import PaperDetailPage from "./pages/PaperDetailPage";
-
-const AsyncAnotherPage = Loadable({
-  loader: () => import("./pages/AnotherPage"),
-  loading: Loading,
-});
 
 const AsyncExplorePage = Loadable({
-  loader: () => import("./pages/Explore"),
+  loader: () => import("./pages/ExplorePage"),
   loading: Loading,
 });
 
@@ -26,6 +18,11 @@ const AsyncPaperDetailPage = Loadable({
   loader: () => import("./pages/PaperDetailPage"),
   loading: Loading,
 });
+
+const AsyncProfilePage = Loadable({
+  loader: () => import("./pages/ProfilePage"),
+  loading: Loading,
+})
 
 const AsyncPaperUploadPage = Loadable({
   loader: () => import("./pages/PaperUploadPage"),
@@ -43,9 +40,12 @@ function App() {
         <Router primary={false}>
           <HomePage path="/"/>
           <AsyncExplorePage path="/explore"/>
-          <AsyncAnotherPage path="/another"/>
           <AsyncPaperDetailPage path="/papers/:paperId"/>
           <AsyncPaperUploadPage path="/upload"/>
+          <HomePage path="/"/>
+          <AsyncExplorePage path="/explore"/>
+          <AsyncPaperUploadPage path="/upload"/>
+          <AsyncProfilePage path="/profile"/>
         </Router>
 
       </RootLayout>

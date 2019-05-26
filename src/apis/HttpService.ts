@@ -21,7 +21,10 @@ export interface HttpError {
   data?: any;
 }
 
-const axiosInstance = axios.create({ baseURL: "" });
+
+const BASE_URL = "http://localhost:5000";
+
+const axiosInstance = axios.create({ baseURL: BASE_URL });
 
 export class HttpService {
 

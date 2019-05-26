@@ -7,6 +7,7 @@ import HeaderIcon from "./HeaderIcon";
 import { layoutConstants } from "../../layouts/constants";
 import styled from "styled-components";
 import { Location, navigate } from "@reach/router";
+import logo from "../../assets/logo.jpg";
 
 const { Header: AntdHeader } = Layout;
 
@@ -90,7 +91,9 @@ const Header: React.FunctionComponent = () => {
         return (
           <Head>
             <MarginedDiv>
-              <Logo onClick={() => navigate("/")}>ChainPaper</Logo>
+              <Logo onClick={() => navigate("/")}>
+                <img src={logo} />
+              </Logo>
             </MarginedDiv>
             <MarginedDiv>
               <MediaQuery minWidth={layoutConstants.menuBreakpoint}>

@@ -1,7 +1,7 @@
 import * as React from "react";
 
 interface Props<T> {
-  children: (data: T | undefined,
+  children: (data: T,
              loading: boolean,
              error: any,
              refetch: () => void,
@@ -49,6 +49,6 @@ export default class Query<T> extends React.PureComponent<Props<T>, State<T>> {
 
   render() {
     const { data, loading, error } = this.state;
-    return this.props.children(data, loading, error, this.fetch);
+    return this.props.children(data!!, loading, error, this.fetch);
   }
 }

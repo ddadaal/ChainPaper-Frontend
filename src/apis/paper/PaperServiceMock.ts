@@ -2,7 +2,7 @@ import {PaperService, PaperIdResponse, PaperListResponse} from "./PaperService";
 import {PaperDraft, PaperInfo} from "../../models/paper";
 import {HttpMethod} from "../HttpService";
 
-const papers: PaperInfo[] = [
+export const papers: PaperInfo[] = [
   {
     paperId: "1", authors: ["123", "1"], paper: {
       title: "Bug Localization with Semantic and Structural Features using Convolutional Neural Network and Cascade Forest",

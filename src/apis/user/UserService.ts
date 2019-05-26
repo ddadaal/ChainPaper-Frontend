@@ -1,5 +1,6 @@
 import { HttpError, HttpMethod, HttpService } from "../HttpService";
-import { Role } from "../../models/user";
+import { Role, UserInfo } from "../../models/user";
+import { getUserInfoInStorage } from "../../stores/UserStore";
 
 export interface Response {
   token?: string;
@@ -7,6 +8,15 @@ export interface Response {
 }
 
 export class UserService extends HttpService {
+
+  constructor() {
+    super();
+    // data
+    const data = getUserInfoInStorage();
+    if (data) {
+      this.setToken(data.token);
+    }
+  }
 
   async login(username: string, password: string): Promise<Response> {
     try {
@@ -40,8 +50,18 @@ export class UserService extends HttpService {
 
   }
 
-  async getUserInfo(userId: string) {
-    
+  async getUserInfo(userId: string): Promise<UserInfo> {
+    try {
+      const data = await this.fetch<UserInfo>({
+        method: HttpMethod.POST,
+        path: `/user/${userId}`,
+      });
+      return data;
+    } catch (e) {
+      const e1 = e as HttpError;
+      return e1.data;
+    }
+
   }
 
   setToken(token: string) {

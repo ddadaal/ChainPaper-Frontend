@@ -18,7 +18,7 @@ const UserIndicator: React.FunctionComponent<Props> = () => {
   const dropdownMenu = (
     <Menu>
       <Menu.Item key="self">
-        <Link to={"/user"}>个人中心</Link>
+        <Link to={"/profile"}>个人中心</Link>
       </Menu.Item>
       <Menu.Divider />
       <Menu.Item key="logout">
