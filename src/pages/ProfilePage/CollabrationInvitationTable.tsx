@@ -34,8 +34,9 @@ const CollabrationInvitationTable: React.FC<Props> = (props) => {
             title: "操作", key: "actions", render: (text, record) => {
               return (
                 <a onClick={() => {
-                  collabrationService.acceptCollabrationInvitation(record.collabrationInvitationId);
-                  props.refetch();
+                  collabrationService.acceptCollabrationInvitation(record.collabrationInvitationId).then(() => {
+                    props.refetch();
+                  });
                 }}>接受</a>
               )
 
