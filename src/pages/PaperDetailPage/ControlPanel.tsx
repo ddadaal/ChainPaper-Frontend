@@ -5,6 +5,9 @@ import { getApiService } from "../../apis";
 import { PaperService } from "../../apis/paper/PaperService";
 import Query from "../../apis/Query";
 import CommentPanel from "./CommentPanel";
+import CollabrationControls from "./CollabrationControls";
+import styled from "styled-components";
+import PaperMeta from "./PaperMeta";
 
 interface Props {
   paper: PaperInfo;
@@ -71,21 +74,35 @@ const ScoreStatistic = ({ paperId }) => {
 
 }
 
+const Panel = styled.div`
+  margin: 8px 0;
+`;
+
 const ControlPanel: React.FC<Props> = ({ paper }) => {
   const { paperId, comments } = paper;
 
 
   return (
     <div>
-      <Row gutter={16}>
-        <Col span={12}>
-          <StarStatistics paperId={paperId} />
-        </Col>
-        <Col span={12}>
-          <ScoreStatistic paperId={paperId} />
-        </Col>
-      </Row>
-      <CommentPanel paperId={paperId} />
+      <Panel>
+        <PaperMeta paperInfo={paper} />
+      </Panel>
+      <Panel>
+        <Row gutter={16}>
+          <Col span={12}>
+            <StarStatistics paperId={paperId} />
+          </Col>
+          <Col span={12}>
+            <ScoreStatistic paperId={paperId} />
+          </Col>
+        </Row>
+      </Panel>
+      <Panel>
+        <CollabrationControls paperInfo={paper} />
+      </Panel>
+      <Panel>
+        <CommentPanel paperId={paperId} />
+      </Panel>
     </div>
   )
 };

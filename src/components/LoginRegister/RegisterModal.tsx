@@ -28,7 +28,7 @@ const RegisterModal = Form.create({ name: "normal_register" })((props: { form: W
         const res = await userService.register(username, password, role);
         if (res.token) {
           uiStore.toggleRegisterModalShown();
-          userStore.login(username, res.token);
+          userStore.login(res.userId!!, username, res.token);
         } else {
           message.error(`登录错误，原因：${res.error}`);
         }

@@ -27,7 +27,7 @@ const LoginModal = Form.create({ name: "normal_login" })((props: { form: Wrapped
         const res = await userService.login(username, password);
         if (res.token) {
           uiStore.toggleLoginModalShown();
-          userStore.login(username, res.token);
+          userStore.login(res.userId!!, username, res.token);
         } else {
           message.error(`登录错误，原因：${res.error}`);
         }

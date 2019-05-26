@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { UserInfo } from "../../models/user";
 import { Statistic, Row, Col, Descriptions } from "antd";
 import styled from "styled-components";
@@ -24,6 +24,12 @@ margin: 20px 0;
 const ProfilePage: React.FC<Props> = (props) => {
   const { userInfo } = props;
   const [modalShow, setModalShow] = useState(false);
+  const [paperIds, setPaperIds] = useState([] as string[]);
+
+  const showModal = useCallback((ids: string[]) => {
+    setPaperIds(ids);
+    setModalShow(true);
+  }, []);
 
   return (
     <div>
@@ -35,14 +41,19 @@ const ProfilePage: React.FC<Props> = (props) => {
 
           <DescriptionItem label="角色"><span>{userInfo.role}</span></DescriptionItem>
           <DescriptionItem label="上传论文数">
-            <a onClick={() => setModalShow(true)}>
+            <a onClick={() => showModal(userInfo.paperIds)}>
               {userInfo.paperIds.length}
+            </a>
+          </DescriptionItem>
+          <DescriptionItem label="参与论文数">
+            <a onClick={() => showModal(userInfo.paperIdsInCollabration)}>
+              {userInfo.paperIdsInCollabration.length}
             </a>
           </DescriptionItem>
           <DescriptionItem label="评分"><span>{userInfo.score}</span></DescriptionItem>
 
         </Descriptions>
-        <PaperModal paperIds={userInfo.paperIds} show={modalShow} close={() => setModalShow(false)} />
+        <PaperModal paperIds={paperIds} show={modalShow} close={() => setModalShow(false)} />
       </div>
       <div>
         <Title>

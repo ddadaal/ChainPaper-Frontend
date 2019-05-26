@@ -14,7 +14,7 @@ const LatexViewer: React.FC<Props> = ({ paper }: Props) => {
       <div
         style={{ fontFamily: 'SimHei', fontSize: '24px', textAlign: 'center' }}>{paper.title}</div>
       <div style={{ margin: '20px' }}>
-        <div>
+        <div style={{ marginLeft: '15%', marginRight: '15%' }}>
           <Row>
             <Col span={3}>
               <p style={{

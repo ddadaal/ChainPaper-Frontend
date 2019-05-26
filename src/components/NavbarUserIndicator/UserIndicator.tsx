@@ -17,6 +17,9 @@ const UserIndicator: React.FunctionComponent<Props> = () => {
 
   const dropdownMenu = (
     <Menu>
+      <Menu.Item key="upload">
+        <Link to={"/upload"}>上传文章</Link>
+      </Menu.Item>
       <Menu.Item key="self">
         <Link to={"/profile"}>个人中心</Link>
       </Menu.Item>

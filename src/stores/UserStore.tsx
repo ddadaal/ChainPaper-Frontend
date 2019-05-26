@@ -1,6 +1,7 @@
 import { Store } from "simstate";
 
 interface User {
+  userId: string;
   username: string;
   token: string;
 }
@@ -41,10 +42,10 @@ export class UserStore extends Store<IUserStore> {
     this.setState({ user: null, loggedIn: false });
   };
 
-  login = (username: string, token: string) => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({ username, token }));
+  login = (userId: string, username: string, token: string) => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ userId, username, token }));
     this.setState({
-      user: { username, token },
+      user: { userId, username, token },
       loggedIn: true,
     });
   }

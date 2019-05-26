@@ -1,32 +1,38 @@
-import React, {useRef, useState} from 'react';
-import {Router} from "@reach/router";
+import React, { useRef, useState } from 'react';
+import { Router } from "@reach/router";
 import HomePage from './pages/HomePage';
 import Loadable from "react-loadable";
-import {Spin} from 'antd';
-import {StoreProvider} from 'simstate';
-import {UiStore} from './stores/UiStore';
-import {UserStore} from './stores/UserStore';
+import { Spin } from 'antd';
+import { StoreProvider } from 'simstate';
+import { UiStore } from './stores/UiStore';
+import { UserStore } from './stores/UserStore';
 import RootLayout from './layouts/RootLayout';
 import Loading from './components/Loading';
+import PageLoading from './components/PageLoading';
 
 const AsyncExplorePage = Loadable({
   loader: () => import("./pages/ExplorePage"),
-  loading: Loading,
+  loading: PageLoading,
 });
 
 const AsyncPaperDetailPage = Loadable({
   loader: () => import("./pages/PaperDetailPage"),
-  loading: Loading,
+  loading: PageLoading,
 });
 
 const AsyncProfilePage = Loadable({
   loader: () => import("./pages/ProfilePage"),
-  loading: Loading,
+  loading: PageLoading,
 })
 
 const AsyncPaperUploadPage = Loadable({
   loader: () => import("./pages/PaperUploadPage"),
-  loading: Loading,
+  loading: PageLoading,
+});
+
+const AsyncPaperEditPage = Loadable({
+  loader: () => import("./pages/PaperEditPage"),
+  loading: PageLoading,
 });
 
 function App() {
@@ -38,14 +44,12 @@ function App() {
 
       <RootLayout>
         <Router primary={false}>
-          <HomePage path="/"/>
-          <AsyncExplorePage path="/explore"/>
-          <AsyncPaperDetailPage path="/papers/:paperId"/>
-          <AsyncPaperUploadPage path="/upload"/>
-          <HomePage path="/"/>
-          <AsyncExplorePage path="/explore"/>
-          <AsyncPaperUploadPage path="/upload"/>
-          <AsyncProfilePage path="/profile"/>
+          <HomePage path="/" />
+          <AsyncExplorePage path="/explore" />
+          <AsyncPaperDetailPage path="/papers/:paperId" />
+          <AsyncPaperUploadPage path="/upload" />
+          <AsyncPaperEditPage path="/edit/:paperId" />
+          <AsyncProfilePage path="/profile" />
         </Router>
 
       </RootLayout>

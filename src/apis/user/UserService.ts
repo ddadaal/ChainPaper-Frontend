@@ -3,6 +3,7 @@ import { Role, UserInfo } from "../../models/user";
 import { getUserInfoInStorage } from "../../stores/UserStore";
 
 export interface Response {
+  userId?: string;
   token?: string;
   error?: "incorrect" | "frozen";
 }
