@@ -18,7 +18,7 @@ interface Props {
 }
 
 const HomePageContainer = styled.div`
-  min-height: 800px;
+  /* min-height: 800px; */
 `;
 
 const titleShowcaseHeight = 500;

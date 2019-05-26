@@ -31,7 +31,7 @@ function App() {
     <StoreProvider stores={[uiStore, userStore]}>
 
       <RootLayout>
-        <Router>
+        <Router primary={false}>
           <HomePage path="/" />
           <AsyncExplorePage path="/explore" />
           <AsyncAnotherPage path="/another" />

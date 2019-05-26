@@ -18,11 +18,11 @@ const CenterContent = styled.div`
 
 const RootLayout: React.FunctionComponent = (props) => {
   return (
-    <AntdLayout>
+    <div>
       <Header />
       {props.children}
       <Footer />
-    </AntdLayout>
+    </div>
   )
 };
 
