@@ -4,15 +4,16 @@ export type Reference = {
 } | {
   type: "chainpaper",
   paperId: string;
+  content: string;
 };
 
 export type PaperDraft = {
   title: string;
-  refs: Reference[]
+  refs: Reference[];
   keywords: string;
-  abstractContent: string
-  introduction: string
-  content: string
+  abstractContent: string;
+  introduction: string;
+  content: string;
   conclusion: string;
   acknowledgement: string;
 }

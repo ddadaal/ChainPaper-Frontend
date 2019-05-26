@@ -1,15 +1,16 @@
-import React, { useRef, useState } from 'react';
-import { Router } from "@reach/router";
+import React, {useRef, useState} from 'react';
+import {Router} from "@reach/router";
 import HomePage from './pages/HomePage';
 import Loadable from "react-loadable";
-import { Spin } from 'antd';
-import { StoreProvider } from 'simstate';
-import { UiStore } from './stores/UiStore';
-import { UserStore } from './stores/UserStore';
+import {Spin} from 'antd';
+import {StoreProvider} from 'simstate';
+import {UiStore} from './stores/UiStore';
+import {UserStore} from './stores/UserStore';
 import RootLayout from './layouts/RootLayout';
 import Loading from './components/Loading';
 import PaperUploadPage from './pages/PaperUploadPage';
 import ExplorePage from './pages/Explore';
+import PaperDetailPage from "./pages/PaperDetailPage";
 
 const AsyncAnotherPage = Loadable({
   loader: () => import("./pages/AnotherPage"),
@@ -21,9 +22,17 @@ const AsyncExplorePage = Loadable({
   loading: Loading,
 });
 
+const AsyncPaperDetailPage = Loadable({
+  loader: () => import("./pages/PaperDetailPage"),
+  loading: Loading,
+});
+
+const AsyncPaperUploadPage = Loadable({
+  loader: () => import("./pages/PaperUploadPage"),
+  loading: Loading,
+});
+
 function App() {
-
-
   const [uiStore] = useState(() => new UiStore());
   const [userStore] = useState(() => new UserStore);
 
@@ -32,11 +41,11 @@ function App() {
 
       <RootLayout>
         <Router primary={false}>
-          <HomePage path="/" />
-          <AsyncExplorePage path="/explore" />
-          <AsyncAnotherPage path="/another" />
-          <PaperUploadPage path="/upload" />
-
+          <HomePage path="/"/>
+          <AsyncExplorePage path="/explore"/>
+          <AsyncAnotherPage path="/another"/>
+          <AsyncPaperDetailPage path="/papers/:paperId"/>
+          <AsyncPaperUploadPage path="/upload"/>
         </Router>
 
       </RootLayout>
