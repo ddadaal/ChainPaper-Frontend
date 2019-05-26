@@ -6,10 +6,12 @@ import { Spin } from 'antd';
 import { StoreProvider } from 'simstate';
 import { UiStore } from './stores/UiStore';
 import { UserStore } from './stores/UserStore';
+import RootLayout from './layouts/RootLayout';
+import Loading from './components/Loading';
 
 const AsyncAnotherPage = Loadable({
   loader: () => import("./pages/AnotherPage"),
-  loading: () => <p>loading</p>
+  loading: Loading,
 });
 
 function App() {
@@ -20,10 +22,14 @@ function App() {
 
   return (
     <StoreProvider stores={[uiStore, userStore]}>
-      <Router>
-        <Home path="/" />
-        <AsyncAnotherPage path="/another" />
-      </Router>
+
+      <RootLayout>
+        <Router>
+          <Home path="/" />
+          <AsyncAnotherPage path="/another" />
+        </Router>
+
+      </RootLayout>
     </StoreProvider>
   );
 }

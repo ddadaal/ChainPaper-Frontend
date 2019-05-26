@@ -1,41 +1,43 @@
 import { HttpError, HttpMethod, HttpService } from "../HttpService";
+import { Role } from "../../models/user";
 
-export interface LoginResponse {
+export interface Response {
   token?: string;
   error?: "incorrect" | "frozen";
 }
 
 export class UserService extends HttpService {
 
-  async login(username: string, password: string): Promise<LoginResponse> {
-
-    const data = await this.fetch<LoginResponse>({
-      method: HttpMethod.GET,
-      params: { username, password },
-      path: "/login",
-    });
-    if (data.token) {
-      this.setToken(data.token);
+  async login(username: string, password: string): Promise<Response> {
+    try {
+      const data = await this.fetch<Response>({
+        method: HttpMethod.GET,
+        params: { username, password },
+        path: "/login",
+      });
+      if (data.token) {
+        this.setToken(data.token);
+      }
+      return data;
+    } catch (e) {
+      return (e as HttpError).data;
     }
-    return data;
+
   }
 
-  async register(username: string, password: string): Promise<"success" | "conflict"> {
+  async register(username: string, password: string, role: Role): Promise<Response> {
     try {
-      await this.fetch({
+      const data = await this.fetch({
         method: HttpMethod.POST,
-        body: { username, password },
+        body: { username, password, role },
         path: "/register",
       });
-      return "success";
+      return data;
     } catch (e) {
       const e1 = e as HttpError;
-      if (e1.status === 409) {
-        return "conflict";
-      } else {
-        throw e;
-      }
+      return e1.data;
     }
+
   }
 
   setToken(token: string) {

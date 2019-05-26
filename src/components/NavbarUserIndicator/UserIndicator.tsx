@@ -33,7 +33,7 @@ const UserIndicator: React.FunctionComponent<Props> = () => {
         <Avatar size="default" src={DEFAULT_AVATAR} />
         <MediaQuery minWidth={layoutConstants.menuBreakpoint}>
           <span style={{ marginLeft: "8px" }}>
-            欢迎：你好
+            欢迎：{userStore.state.user!!.username}
             <Icon type="down" />
           </span>
         </MediaQuery>
