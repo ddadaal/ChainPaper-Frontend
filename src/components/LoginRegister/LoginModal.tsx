@@ -7,12 +7,14 @@ import { FormWrappedProps } from "antd/lib/form/interface";
 import { WrappedFormUtils } from "antd/lib/form/Form";
 import { useApiService } from "../../apis";
 import { UserService } from "../../apis/user/UserService";
+import { UserStore } from "../../stores/UserStore";
 
 const LoginModal = Form.create({ name: "normal_login" })((props: { form: WrappedFormUtils }) => {
 
   const { getFieldDecorator, validateFields } = props.form;
 
   const uiStore = useStore(UiStore);
+  const userStore = useStore(UserStore, []);
 
   const [loggingIn, setLoggingIn] = useState(false);
 
@@ -25,6 +27,7 @@ const LoginModal = Form.create({ name: "normal_login" })((props: { form: Wrapped
         const res = await userService.login(username, password);
         if (res.token) {
           uiStore.toggleLoginModalShown();
+          userStore.login(username, res.token);
         } else {
           message.error(`登录错误，原因：${res.error}`);
         }
@@ -59,7 +62,7 @@ const LoginModal = Form.create({ name: "normal_login" })((props: { form: Wrapped
       ]}
     >
       <Form>
-        <Form.Item>
+        <Form.Item label="用户名">
           {getFieldDecorator('username', {
             rules: [{ required: true, message: '请输入用户名' }],
           })(
@@ -69,7 +72,7 @@ const LoginModal = Form.create({ name: "normal_login" })((props: { form: Wrapped
             />,
           )}
         </Form.Item>
-        <Form.Item>
+        <Form.Item label="密码">
           {getFieldDecorator('password', {
             rules: [{ required: true, message: '请输入密码' }],
           })(

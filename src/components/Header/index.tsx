@@ -72,6 +72,10 @@ export function HeaderNavMenu({ vertical, selectedKeys, to }:
 
 const Logo = styled.span`
   color: white;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const Header: React.FunctionComponent = () => {
@@ -83,7 +87,7 @@ const Header: React.FunctionComponent = () => {
         return (
           <Head>
             <MarginedDiv>
-              <Logo>ChainPaper</Logo>
+              <Logo onClick={() => navigate("/")}>ChainPaper</Logo>
             </MarginedDiv>
             <MarginedDiv>
               <MediaQuery minWidth={layoutConstants.menuBreakpoint}>
