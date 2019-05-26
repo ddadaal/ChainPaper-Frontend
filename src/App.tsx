@@ -35,7 +35,7 @@ function App() {
           <HomePage path="/" />
           <AsyncExplorePage path="/explore" />
           <AsyncAnotherPage path="/another" />
-          <PaperUploadPage path="/paper" />
+          <PaperUploadPage path="/upload" />
 
         </Router>
 

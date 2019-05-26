@@ -95,7 +95,7 @@ const HomePage: React.FC<RouteComponentProps> = () => {
                 <h2 style={{ color: "white" }}>Share your papers without worries</h2>
                 <Button size={"large"} type={"primary"} onClick={() => {
                   if (userStore.state.loggedIn) {
-                    navigate("/explore");
+                    navigate("/upload");
                   } else {
                     uiStore.toggleLoginModalShown();
                   }

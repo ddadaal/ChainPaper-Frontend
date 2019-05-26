@@ -17,8 +17,9 @@ const Layout = styled(AntdLayout)`
 
 const styleContent = {
   padding: 8,
-  margin: 0,
+  margin: 30,
   minHeight: 800,
+  background: "#FFFFFF",
 };
 
 
