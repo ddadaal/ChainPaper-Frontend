@@ -19,7 +19,7 @@ export class PaperService extends HttpService {
     const data = await this.fetch({
       path: "/papers",
       method: HttpMethod.POST,
-      body: paperDraft,
+      body: { paperDraft },
     });
 
     return data as PaperIdResponse;
