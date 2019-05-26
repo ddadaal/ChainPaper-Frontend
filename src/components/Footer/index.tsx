@@ -1,12 +1,35 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "@reach/router";
+import "./footer.less";
 
 export interface FooterProps {
   isMobile?: boolean;
   id?: string;
 }
 
+const dataSource = [
+  {
+    title: "联系我",
+    content: [
+      "GitHub"
+    ],
+    contentLink: [
+      "https://github.com/viccrubs"
+    ]
+  },
+  {
+    title: "相关产品",
+    content: [
+      "ChainStore - 基于区块链的分布式存储解决方案",
+      "FinBrain - 基于机器学习的大类资产管理系统"
+    ],
+    contentLink: [
+      "https://github.com/NJUChainStore/ChainStore",
+      "https://github.com/FinTechNJU/FinBrain"
+    ],
+  },
+];
 
 export default class Footer extends React.Component<FooterProps, any> {
 
@@ -23,7 +46,7 @@ export default class Footer extends React.Component<FooterProps, any> {
         const cItem = item.trim();
         const isImg = cItem.match(/\.(jpg|png|svg|bmp|jpeg)$/i);
         const link = links[ii];
-        const imgContent = isImg ? <img src={cItem} width="100%"/> : cItem;
+        const imgContent = isImg ? <img src={cItem} width="100%" /> : cItem;
         return (<li className={isImg ? "icon" : ""} key={ii}>
           {link.startsWith("/")
             ? <Link to={link}>{imgContent}</Link>
@@ -40,52 +63,26 @@ export default class Footer extends React.Component<FooterProps, any> {
   }
 
   render() {
-    const props = {...this.props};
-    const isMobile = props.isMobile;
+    const props = { ...this.props };
     delete props.isMobile;
 
-    const dataSource = [
-      {
-        title: "相关产品",
-        content: [
-          "ChainStore - 基于区块链的分布式存储解决方案",
-          "FinBrain - 基于机器学习的大类资产管理系统"
-        ],
-        contentLink: [
-          "https://github.com/NJUChainStore/ChainStore",
-          "https://github.com/FinTechNJU/FinBrain"
-        ],
-      },
-    ];
-
     const liChildrenToRender = dataSource.map(this.getLiChildren);
-    return (<div
-      {...props}
-      // playScale={isMobile ? 0.5 : 0.2}
-    >
+    return (
+      <div {...props}>
 
-      {/*<QueueAnim type="bottom" component="ul" key="ul" leaveReverse={true} id={`${props.id}-ul`}>*/}
-      <ul>
-        <li key="logo" id={`${props.id}-logo`}>
-          <LogoContainer>
-            ChainPaper
+        <ul>
+          <li key="logo" id={`${props.id}-logo`}>
+            <LogoContainer>
+              ChainPaper
           </LogoContainer>
-          <p>基于区块链的论文分享平台；论文交流，版权保证</p>
-        </li>
-        {liChildrenToRender}
-      </ul>
-      {/*</QueueAnim>*/}
-      {/*<TweenOne*/}
-        {/*animation={{y: "+=30", opacity: 0, type: "from"}}*/}
-        {/*key="copyright"*/}
-        {/*id={`${props.id}-content`}*/}
-      {/*>*/}
-        <span         className="copyright"
-        >
+            <p>基于区块链的论文分享平台；论文交流，版权保证</p>
+          </li>
+          {liChildrenToRender}
+        </ul>
+        <span className="copyright">
           2019
         </span>
-      {/*</TweenOne>*/}
-    </div>
+      </div>
     );
   }
 }

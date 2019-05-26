@@ -14,8 +14,12 @@ const HeaderItemContainer = styled.div`
     cursor: pointer;
   }
 
-  padding-left: 8px;
-  padding-right: 8px;
+  padding: 0 8px;
+
+  height: ${layoutConstants.headerHeight}px;
+
+  display: flex;
+  align-items: center;
 `;
 
 export const HeaderColoredIcon = styled(Icon)`
