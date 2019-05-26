@@ -1,6 +1,7 @@
 
 import { Response, UserService } from "./UserService";
-import { Role } from "../../models/user";
+import { Role, UserInfo } from "../../models/user";
+import { papers } from "../paper/PaperServiceMock";
 
 export default class UserServiceMock extends UserService {
   async login(username: string, password: string): Promise<Response> {
@@ -17,5 +18,17 @@ export default class UserServiceMock extends UserService {
     } else {
       return { error: "incorrect" };
     }
+  }
+
+  async getUserInfo(userId: string): Promise<UserInfo> {
+    return {
+      userId,
+      username: `${userId}'s name`,
+      role: "student",
+      papers,
+      score: 4.6,
+      collabrationInvitationIds: [],
+      collabrationRequestIds: [],
+    };
   }
 }

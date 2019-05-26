@@ -8,11 +8,9 @@ import { UiStore } from './stores/UiStore';
 import { UserStore } from './stores/UserStore';
 import RootLayout from './layouts/RootLayout';
 import Loading from './components/Loading';
-import PaperUploadPage from './pages/PaperUploadPage';
-import ExplorePage from './pages/ExplorePage';
 
-const AsyncAnotherPage = Loadable({
-  loader: () => import("./pages/AnotherPage"),
+const AsyncPaperUploadPage = Loadable({
+  loader: () => import("./pages/PaperUploadPage"),
   loading: Loading,
 });
 
@@ -20,6 +18,11 @@ const AsyncExplorePage = Loadable({
   loader: () => import("./pages/ExplorePage"),
   loading: Loading,
 });
+
+const AsyncProfilePage = Loadable({
+  loader: () => import("./pages/ProfilePage"),
+  loading: Loading,
+})
 
 function App() {
 
@@ -34,9 +37,8 @@ function App() {
         <Router primary={false}>
           <HomePage path="/" />
           <AsyncExplorePage path="/explore" />
-          <AsyncAnotherPage path="/another" />
-          <PaperUploadPage path="/upload" />
-
+          <AsyncPaperUploadPage path="/upload" />
+          <AsyncProfilePage path="/profile" />
         </Router>
 
       </RootLayout>

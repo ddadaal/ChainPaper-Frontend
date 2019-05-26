@@ -2,7 +2,7 @@ import { PaperInfo } from "./paper";
 
 export type Role = "student" | "teacher";
 
-export interface UserProfile {
+export interface UserInfo {
   userId: string;
   username: string;
   role: Role;
