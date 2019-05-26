@@ -67,25 +67,6 @@ const ProfilePage: React.FC<Props> = (props) => {
         </Title>
         <CollabrationInvitationTable refetch={props.refetch} invitationIds={userInfo.collabrationInvitationIds} />
       </div>
-
-      {/* <Row gutter={16}>
-        <Col md={8}>
-          <Statistic title="用户ID" value={userInfo.userId} />
-        </Col>
-        <Col md={8}>
-          <Statistic title="用户名" value={userInfo.username} />
-        </Col>
-        <Col md={8}>
-        <Statistic title="角色" value={userInfo.role} />
-        </Col>
-        <Col md={8}>
-        <Statistic title="上传论文数" value={userInfo.papers.length} />
-        </Col>
-        <Col md={8}>
-        <Statistic title="评分" value={userInfo.score} />
-        </Col>
-      </Row> */}
-
     </div>
   );
 };

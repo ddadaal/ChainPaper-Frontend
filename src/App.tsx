@@ -53,9 +53,9 @@ function App() {
           <HomePage path="/"/>
           <AsyncExplorePage path="/explore"/>
           <AsyncPaperDetailPage path="/papers/:paperId"/>
-          <AsyncPaperAnimPage path="/papers/anim/:paperId"/>
+          <AsyncPaperAnimPage path="/papers/:paperId/anim"/>
+          <AsyncPaperEditPage path="/papers/:paperId/edit"/>
           <AsyncPaperUploadPage path="/upload"/>
-          <AsyncPaperEditPage path="/edit/:paperId"/>
           <AsyncProfilePage path="/profile"/>
         </Router>
 

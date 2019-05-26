@@ -39,7 +39,7 @@ const CollabrationControls: React.FC<Props> = ({ paperInfo }) => {
         return (
           <div>
             <Button type="primary" disabled={!canEdit} onClick={() => {
-              navigate(`/edit/${paperInfo.paperId}`);
+              navigate(`/papers/${paperInfo.paperId}/edit`);
             }}>
               编辑{canEdit ? "" : "（请先申请成为合作者）"}
             </Button>

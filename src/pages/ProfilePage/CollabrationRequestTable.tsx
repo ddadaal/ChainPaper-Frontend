@@ -34,10 +34,8 @@ const CollabrationRequestTable: React.FC<Props> = (props) => {
           },
           {
             title: "操作", key: "actions", render: (text, record) => {
-              console.log(text);
               return (
                 <a key={"accept"} onClick={() => {
-                  console.log("123");
                   collabrationService.acceptCollabrationRequest(record.collabrationRequestId);
                   props.refetch();
                 }}>接受</a>
