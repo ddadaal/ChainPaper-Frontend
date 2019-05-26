@@ -1,27 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { Button } from "antd";
+import { Router } from "@reach/router";
+import Home from './pages/Home';
+import Loadable from "react-loadable";
+import { Spin } from 'antd';
+
+const AsyncAnotherPage = Loadable({
+  loader: () => import("./pages/AnotherPage"),
+  loading: () => <p>loading</p>
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <Button color="primary">哈哈</Button>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Home path="/" />
+      <AsyncAnotherPage path="/another" />
+    </Router>
   );
 }
 
