@@ -1,10 +1,11 @@
 import React from "react";
 import {RouteComponentProps, navigate} from "@reach/router";
-import {Button, Input, Row, Col, Layout, Icon, Menu} from "antd";
+import {Button, Input, Row, Col, Layout, Icon, Menu, Steps} from "antd";
 import LatexEditor from "../components/LatexEditor";
 import RootLayout from "../layouts/RootLayout";
 
 const {Sider, Content} = Layout;
+const Step = Steps.Step;
 const {TextArea} = Input;
 
 const PaperUploadPage: React.FunctionComponent<RouteComponentProps> = () => {
@@ -26,7 +27,12 @@ const PaperUploadPage: React.FunctionComponent<RouteComponentProps> = () => {
         </Sider>
         <Layout>
           <Content style={{background: '#fff', margin: '40px'}}>
-            <div style={{textAlign: 'center', margin: '20px', marginTop: '40px'}}>
+            <Steps current={1} style={{padding: '30px'}}>
+              <Step title="Finished"/>
+              <Step title="In Progress"/>
+              <Step title="Waiting"/>
+            </Steps>
+            <div style={{textAlign: 'center', margin: '20px', marginTop: '30px'}}>
               <TextArea style={{fontFamily: 'SimHei', fontSize: '24px', textAlign: 'center', width: '50%'}}
                         placeholder="标题"
                         autosize/>
@@ -108,6 +114,8 @@ const PaperUploadPage: React.FunctionComponent<RouteComponentProps> = () => {
                 placeholder="参考文献"
                 autosize/>
             </div>
+
+
           </Content>
         </Layout>
       </Layout>
