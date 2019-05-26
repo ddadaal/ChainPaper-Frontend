@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "@reach/router";
 import "./footer.less";
+import logo from "../../assets/logo.jpg";
 
 export interface FooterProps {
   isMobile?: boolean;
@@ -73,7 +74,7 @@ export default class Footer extends React.Component<FooterProps, any> {
         <ul>
           <li key="logo" id={`${props.id}-logo`}>
             <LogoContainer>
-              ChainPaper
+              <img src={logo} />
           </LogoContainer>
             <p>基于区块链的论文分享平台；论文交流，版权保证</p>
           </li>
@@ -95,7 +96,7 @@ export const LogoContainer = styled.div`
   }
   img {
     margin-right: 8px;
-    width: 45px;
-    height: 41px;
+    width: 80px;
+    height: 40px;
   }
 `;

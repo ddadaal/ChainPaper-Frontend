@@ -9,7 +9,7 @@ import { UserStore } from './stores/UserStore';
 import RootLayout from './layouts/RootLayout';
 import Loading from './components/Loading';
 import PaperUploadPage from './pages/PaperUploadPage';
-import ExplorePage from './pages/Explore';
+import ExplorePage from './pages/ExplorePage';
 
 const AsyncAnotherPage = Loadable({
   loader: () => import("./pages/AnotherPage"),
@@ -17,7 +17,7 @@ const AsyncAnotherPage = Loadable({
 });
 
 const AsyncExplorePage = Loadable({
-  loader: () => import("./pages/Explore"),
+  loader: () => import("./pages/ExplorePage"),
   loading: Loading,
 });
 
