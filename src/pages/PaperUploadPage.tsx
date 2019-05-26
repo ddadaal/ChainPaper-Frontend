@@ -1,10 +1,12 @@
 import React, {useState} from "react";
 import {RouteComponentProps, navigate} from "@reach/router";
-import {Button, Input, Row, Col, Layout, Icon, Modal, Tabs} from "antd";
+import {Button, Input, Row, Col, Layout, Icon, Modal, Tabs, message} from "antd";
 import LatexEditor from "../components/LatexEditor";
 import RootLayout from "../layouts/RootLayout";
 import {Steps} from 'antd';
-import {Reference} from "../models/Reference";
+import {getApiService} from "../apis";
+import {PaperService} from "../apis/paper/PaperService";
+import {Reference} from "../models/paper";
 
 const Step = Steps.Step;
 const {Sider, Content} = Layout;
@@ -14,6 +16,8 @@ const TabPane = Tabs.TabPane;
 const Latex = require('react-latex');
 
 const PaperUploadPage: React.FunctionComponent<RouteComponentProps> = () => {
+  const paperService = getApiService(PaperService);
+
   const [title, setTitle] = useState("");
   const [keywords, setKeywords] = useState("");
   const [abstractContent, setAbstractContent] = useState("");
@@ -24,6 +28,7 @@ const PaperUploadPage: React.FunctionComponent<RouteComponentProps> = () => {
   const [refs, setRefs] = useState([] as Reference[]);
   const [refText, setRefText] = useState([] as string[]);
 
+  const [paperId, setPaperId] = useState("");
   const [doi, setDoi] = useState("");
   const [type, setType] = useState("published");
   const [isModelShow, setIsModelShow] = useState(false);
@@ -33,7 +38,7 @@ const PaperUploadPage: React.FunctionComponent<RouteComponentProps> = () => {
       <Modal
         title="添加文献"
         visible={isModelShow}
-        onOk={() => {
+        onOk={async () => {
           if (type === "published") {
             let newRefs: Reference[] = refs;
             newRefs.push({
@@ -45,7 +50,20 @@ const PaperUploadPage: React.FunctionComponent<RouteComponentProps> = () => {
             newRefText.push(doi);
             setRefText(newRefText);
           } else if (type === "chainpaper") {
-
+            try {
+              const data = await paperService.getPaper(paperId);
+              let newRefs: Reference[] = refs;
+              newRefs.push({
+                type: "chainpaper",
+                paperId: paperId
+              });
+              setRefs(newRefs);
+              let newRefText: string[] = refText;
+              newRefText.push(data.paper.authors.join(",") + ":" + data.paper.paper.title + "," + data.paper.uploadTime);
+              setRefText(newRefText);
+            } catch (e) {
+              message.error("无该论文");
+            }
           }
           setIsModelShow(false);
         }}
@@ -61,7 +79,9 @@ const PaperUploadPage: React.FunctionComponent<RouteComponentProps> = () => {
             }}/>
           </TabPane>
           <TabPane tab="本平台论文" key="chainpaper">
-            Content of Tab Pane 2
+            <Input placeholder="输入论文号" value={paperId} onChange={(e) => {
+              setPaperId(e.target.value)
+            }}/>
           </TabPane>
         </Tabs>
       </Modal>
@@ -239,7 +259,7 @@ const PaperUploadPage: React.FunctionComponent<RouteComponentProps> = () => {
                     marginLeft: '15%',
                     marginRight: '15%',
                   }}>
-                  {refText.map((text => (<p>{text}</p>)))}
+                  {refText.map(((text, index) => (<p>【{index + 1}】{text}</p>)))}
                 </div>
               </div>
               <div style={{textAlign: 'center', margin: '20px'}}>
@@ -304,57 +324,57 @@ const PaperUploadPage: React.FunctionComponent<RouteComponentProps> = () => {
                 </div>
               </div>
 
-              <div style={{textAlign: 'center', margin: '20px'}}>
+              <div style={{textAlign: 'center', margin: '20px', marginLeft: '15%', marginRight: '15%'}}>
                 <p style={{fontFamily: 'SimHei', fontSize: '18px', fontWeight: 'bold'}}>绪 论</p>
                 <div
                   style={{
                     fontFamily: 'SimSun',
                     fontSize: '14px',
                     textAlign: 'center',
-                    width: '60%',
                     lineHeight: '20px'
                   }}>{introduction}</div>
               </div>
 
-              <div style={{textAlign: 'center', margin: '20px'}}>
+              <div style={{textAlign: 'center', margin: '20px', marginLeft: '15%', marginRight: '15%'}}>
                 <p style={{fontFamily: 'SimHei', fontSize: '18px', fontWeight: 'bold'}}>正 文</p>
                 <Latex
                   style={{
                     fontFamily: 'SimSun',
                     fontSize: '14px',
-                    width: '70%',
                     lineHeight: '20px'
                   }}>{content}</Latex>
               </div>
 
-              <div style={{textAlign: 'center', margin: '20px'}}>
+              <div style={{textAlign: 'center', margin: '20px', marginLeft: '15%', marginRight: '15%'}}>
                 <p style={{fontFamily: 'SimHei', fontSize: '18px', fontWeight: 'bold'}}>结束语</p>
                 <div
                   style={{
                     fontFamily: 'SimSun',
                     fontSize: '14px',
                     textAlign: 'center',
-                    width: '70%',
                     lineHeight: '20px'
                   }}>{conclusion}</div>
               </div>
 
-              <div style={{textAlign: 'center', margin: '20px'}}>
+              <div style={{textAlign: 'center', margin: '20px', marginLeft: '15%', marginRight: '15%'}}>
                 <p style={{fontFamily: 'SimHei', fontSize: '18px', fontWeight: 'bold'}}>致 谢</p>
                 <div
                   style={{
                     fontFamily: 'SimSun',
                     fontSize: '14px',
                     textAlign: 'center',
-                    width: '70%',
                     lineHeight: '20px'
                   }}>{acknowledgement}</div>
               </div>
 
               <div style={{textAlign: 'center', margin: '20px'}}>
                 <p style={{fontFamily: 'SimHei', fontSize: '18px', fontWeight: 'bold'}}>参考文献</p>
-                {refText.map((text => (
-                  <p style={{fontFamily: 'SimSun', fontSize: '14px', width: '70%', lineHeight: '20px'}}>{text}</p>)))}
+                {refText.map(((text, index) => (
+                  <p style={{
+                    fontFamily: 'SimSun',
+                    fontSize: '14px',
+                    lineHeight: '20px'
+                  }}>【{index + 1}】{text}</p>)))}
               </div>
               <div style={{textAlign: 'center', margin: '20px'}}>
                 <ButtonGroup>
@@ -386,8 +406,25 @@ const PaperUploadPage: React.FunctionComponent<RouteComponentProps> = () => {
                   取消
                 </Button>
 
-                <Button type="primary" size={"large"} style={{margin: '10px'}} onClick={() => {
-
+                <Button type="primary" size={"large"} style={{margin: '10px'}} onClick={async () => {
+                  try {
+                    await paperService.uploadPaper(
+                      {
+                        title: title,
+                        refs: refs,
+                        keywords: keywords,
+                        abstractContent: abstractContent,
+                        introduction: introduction,
+                        content: content,
+                        conclusion: conclusion,
+                        acknowledgement: acknowledgement
+                      }
+                    );
+                    message.success("提交成功");
+                    navigate("/profile");
+                  } catch (e) {
+                    message.error("提交失败");
+                  }
                 }}>
                   确定
                 </Button>

@@ -1,8 +1,17 @@
-import { HttpService, HttpMethod } from "../HttpService";
-import { PaperDraft, PaperInfo } from "../../models/paper";
+import {HttpService, HttpMethod} from "../HttpService";
+import {PaperDraft, PaperInfo} from "../../models/paper";
 
 export interface PaperIdResponse {
   paperId: string;
+}
+
+export interface PaperListResponse {
+  paperItems: PaperItem[];
+}
+
+export interface PaperItem {
+  paperId: string;
+  name: string;
 }
 
 export class PaperService extends HttpService {
@@ -49,7 +58,7 @@ export class PaperService extends HttpService {
   async scorePaper(paperId: string, score: number) {
     await this.fetch({
       path: `/papers/${paperId}/score`,
-      body: { score },
+      body: {score},
       method: HttpMethod.POST,
     });
   }
@@ -57,7 +66,7 @@ export class PaperService extends HttpService {
   async starPaper(paperId: string, operation: "star" | "unstar") {
     await this.fetch({
       path: `/papers/${paperId}/score`,
-      body: { star: operation == "star" },
+      body: {star: operation == "star"},
       method: HttpMethod.POST,
     });
   }
@@ -65,11 +74,10 @@ export class PaperService extends HttpService {
   async commentPaper(paperId: string, commentContent: string) {
     await this.fetch({
       path: `/papers/${paperId}/comment`,
-      body: { comment: commentContent },
+      body: {comment: commentContent},
       method: HttpMethod.POST,
     });
   }
-
 
 
 }
