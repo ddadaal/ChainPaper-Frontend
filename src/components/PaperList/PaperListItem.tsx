@@ -24,7 +24,7 @@ const PaperListItem: React.FC<Props> = ({ item }) => (
     ]}
   >
     <List.Item.Meta
-      title={<Link to={`/papers/${item.paperId}`}>{limitLength(item.paper.abstractContent)}</Link>}
+      title={<Link to={`/papers/${item.paperId}`}>{limitLength(item.paper.title)}</Link>}
       description={<>
         <span>{item.uploadTime}</span> | {"  "}
         {item.authors.map((author) => <ContributorAvatar key={author} userId={author} />)}

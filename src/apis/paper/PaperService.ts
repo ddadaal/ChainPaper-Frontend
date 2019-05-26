@@ -66,7 +66,7 @@ export class PaperService extends HttpService {
 
   async getPaperComments(paperId: string): Promise<{ comments: PaperComment[] }> {
     const data = await this.fetch({
-      path: `/papers/${paperId}/comments`,
+      path: `/papers/${paperId}/comment`,
       method: HttpMethod.GET,
     });
 
