@@ -12,7 +12,6 @@ const collabrationService = getApiService(CollabrationService);
 
 const CollabrationInvitationTable: React.FC<Props> = (props) => {
 
-
   return (
     <Query call={() => Promise.all(props.invitationIds.map((id) => (
       collabrationService.getCollabrationInvitationInfo(id)
@@ -29,7 +28,7 @@ const CollabrationInvitationTable: React.FC<Props> = (props) => {
             title: "操作", key: "actions", render: (text, record) => {
               return (
                 <a onClick={() => {
-                  collabrationService.acceptCollabrationInvitation(record.collabrationRequestId);
+                  collabrationService.acceptCollabrationInvitation(record.collabrationInvitationId);
                   refetch();
                 }}>接受</a>
               )

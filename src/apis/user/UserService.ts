@@ -53,7 +53,7 @@ export class UserService extends HttpService {
   async getUserInfo(userId: string): Promise<UserInfo> {
     try {
       const data = await this.fetch<UserInfo>({
-        method: HttpMethod.POST,
+        method: HttpMethod.GET,
         path: `/user/${userId}`,
       });
       return data;

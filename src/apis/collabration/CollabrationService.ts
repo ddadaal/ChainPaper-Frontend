@@ -1,5 +1,5 @@
-import { HttpService, HttpMethod } from "../HttpService";
-import { CollabrationInvitation, CollabrationRequest } from "../../models/collabration";
+import {HttpMethod, HttpService} from "../HttpService";
+import {CollabrationInvitation, CollabrationRequest} from "../../models/collabration";
 
 export class CollabrationService extends HttpService {
   async requestCollabration(paperId: string): Promise<{ collabrationRequestId: string }> {
@@ -37,8 +37,9 @@ export class CollabrationService extends HttpService {
   }
 
   async getCollabrationInvitationInfo(collabrationInvitationId: string): Promise<CollabrationInvitation> {
-    const data = this.fetch<CollabrationInvitation>({
+    const data = await this.fetch<CollabrationInvitation>({
       path: `/collabration/invitation/${collabrationInvitationId}`,
+      method: HttpMethod.GET,
     });
 
     return data;
@@ -47,6 +48,7 @@ export class CollabrationService extends HttpService {
   async getCollabrationRequestInfo(collabrationRequestId: string): Promise<CollabrationRequest> {
     const data = this.fetch<CollabrationRequest>({
       path: `/collabration/request/${collabrationRequestId}`,
+      method: HttpMethod.GET,
     });
 
     return data;

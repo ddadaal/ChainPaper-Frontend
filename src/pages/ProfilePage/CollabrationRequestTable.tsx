@@ -14,7 +14,6 @@ const collabrationService = getApiService(CollabrationService);
 
 const CollabrationRequestTable: React.FC<Props> = (props) => {
 
-
   return (
     <Query call={() => Promise.all(props.requestIds.map((id) => (
       collabrationService.getCollabrationRequestInfo(id)
@@ -29,8 +28,10 @@ const CollabrationRequestTable: React.FC<Props> = (props) => {
           { title: "文章ID", dataIndex: "paperId", key: "paperId" },
           {
             title: "操作", key: "actions", render: (text, record) => {
+              console.log(text);
               return (
-                <a onClick={() => {
+                <a key={"accept"} onClick={() => {
+                  console.log("123");
                   collabrationService.acceptCollabrationRequest(record.collabrationRequestId);
                   refetch();
                 }}>接受</a>
@@ -50,7 +51,6 @@ const CollabrationRequestTable: React.FC<Props> = (props) => {
       }}
     </Query>
   )
-  return <div />;
 };
 
 export default CollabrationRequestTable;
