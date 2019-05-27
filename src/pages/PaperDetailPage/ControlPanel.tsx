@@ -66,7 +66,7 @@ const ScoreStatistic = ({ paperId, readonly }) => {
                   allowHalf={true}
                   defaultValue={data.score / 2}
                   onChange={(value) => {
-                    message.success(`您打了${value}分！打分成功！`);
+                    message.success(`您打了${value * 2}分！打分成功！`);
                     paperService.scorePaper(paperId, value * 2).then(refetch);
                   }}
                 />

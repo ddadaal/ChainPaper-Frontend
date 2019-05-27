@@ -22,7 +22,7 @@ export interface HttpError {
 }
 
 
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "http://36.103.228.127:5000";
 
 const axiosInstance = axios.create({ baseURL: BASE_URL, headers: { 'Content-Type': "application/json "} });
 
