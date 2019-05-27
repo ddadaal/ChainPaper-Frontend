@@ -107,7 +107,7 @@ export class PaperService extends HttpService {
     });
   }
 
-  async getPaperRefGraph(paperId: string): Promise<{ refs: PaperRef[] }> {
+  async getPaperRefGraph(paperId: string): Promise<{ refs: PaperRef }> {
     const data = this.fetch<any>({
       path: `/papers/${paperId}/refs`,
       method: HttpMethod.GET,

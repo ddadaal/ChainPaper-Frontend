@@ -73,39 +73,39 @@ export class PaperServiceMock extends PaperService {
 
   }
 
-  async getPaperRefGraph(paperId: string): Promise<{ refs: PaperRef[] }> {
+  async getPaperRefGraph(paperId: string): Promise<{ refs: PaperRef }> {
     return {
-      refs: [
+      refs:
         {
           type: "published",
           doi: "10.1145/3210459.3210469",
           title: "123",
           content: "123",
-          refs: [],
+          refs: [        {
+            type: "chainpaper",
+            title: "Environment paper",
+            content: "content 1",
+            paperId: "123",
+            refs: [
+              {
+                type: "chainpaper",
+                title: "Environment paper",
+                content: "content 1",
+                paperId: "456",
+                refs: [
+                  {
+                    type: "chainpaper",
+                    title: "Environment paper",
+                    content: "content 1",
+                    paperId: "4929",
+                    refs: []
+                  }]
+              }
+            ]
+          },],
         },
-        {
-          type: "chainpaper",
-          title: "Environment paper",
-          content: "content 1",
-          paperId: "123",
-          refs: [
-            {
-              type: "chainpaper",
-              title: "Environment paper",
-              content: "content 1",
-              paperId: "456",
-              refs: [
-                {
-                  type: "chainpaper",
-                  title: "Environment paper",
-                  content: "content 1",
-                  paperId: "4929",
-                  refs: []
-                }]
-            }
-          ]
-        },
-      ]
+
+
     };
   }
 }

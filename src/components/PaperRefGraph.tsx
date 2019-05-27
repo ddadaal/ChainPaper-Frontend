@@ -21,7 +21,7 @@ function createTreeNode(refs: PaperRef[]) {
 
 
 const PaperRefGraph: React.FC<Props> = (props) => {
-
+  console.log(props.refs);
   // process data
   // const graph = convert(props.refs);
 

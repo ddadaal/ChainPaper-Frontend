@@ -49,7 +49,8 @@ const GraphModal = ({ show, close, basePaperId }) => {
       <Query call={() => paperService.getPaperRefGraph(basePaperId)}>
         {(data, loading) => {
           if (loading) { return <Loading />; }
-          return <PaperRefGraph refs={data.refs} onSelect={(ref) => setSelected(ref)} />
+          console.log(data);
+          return <PaperRefGraph refs={data.refs.refs} onSelect={(ref) => setSelected(ref)} />
         }}
       </Query>
       </div>
