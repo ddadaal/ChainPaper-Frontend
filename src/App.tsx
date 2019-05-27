@@ -25,12 +25,6 @@ const AsyncProfilePage = Loadable({
   loading: PageLoading,
 });
 
-const AsyncPaperRefGraphPage = Loadable({
-  loader: () => import("./pages/PaperRefGraphPage"),
-  loading: PageLoading,
-});
-
-
 const AsyncPaperUploadPage = Loadable({
   loader: () => import("./pages/PaperUploadPage"),
   loading: PageLoading,
@@ -53,7 +47,6 @@ function App() {
           <HomePage path="/"/>
           <AsyncExplorePage path="/explore"/>
           <AsyncPaperDetailPage path="/papers/:paperId"/>
-          <AsyncPaperRefGraphPage path="/papers/:paperId/refGraph"/>
           <AsyncPaperEditPage path="/papers/:paperId/edit"/>
           <AsyncPaperUploadPage path="/upload"/>
           <AsyncProfilePage path="/profile"/>

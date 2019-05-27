@@ -78,7 +78,7 @@ export class PaperServiceMock extends PaperService {
       refs: [
         {
           type: "published",
-          doi: "12312412412421321321",
+          doi: "10.1145/3210459.3210469",
           title: "123",
           content: "123",
           refs: [],
@@ -99,7 +99,7 @@ export class PaperServiceMock extends PaperService {
                   type: "chainpaper",
                   title: "Environment paper",
                   content: "content 1",
-                  paperId: "456",
+                  paperId: "4929",
                   refs: []
                 }]
             }

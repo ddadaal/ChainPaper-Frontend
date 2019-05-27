@@ -37,3 +37,18 @@ export type PaperInfo = {
 
 export type PaperRef = Reference & { title: string; refs: PaperRef[] };
 
+export interface PaperRefGraphNode {
+  id: string;
+  labels: string[];
+}
+
+export interface PaperRefGraphEdge {
+  id: string;
+  source: string;
+  target: string;
+}
+
+export type PaperRefGraph = {
+  nodes: PaperRefGraphNode[];
+  edges: PaperRefGraphEdge[];
+}
