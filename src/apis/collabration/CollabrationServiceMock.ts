@@ -11,7 +11,7 @@ export class CollabrationServiceMock extends CollabrationService {
 
   }
 
-  async inviteCollabration(paperId: string): Promise<{ collabrationInvitationId: string }> {
+  async inviteCollabration(paperId: string, inviteeId: string): Promise<{ collabrationInvitationId: string }> {
     return { collabrationInvitationId: "123" };
   }
 

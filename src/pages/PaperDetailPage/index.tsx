@@ -14,6 +14,8 @@ import styled from "styled-components";
 const HeightLimited = styled.div`
   max-height: 75vh;
   overflow: auto;
+  outline: 1px solid lightgray;
+  padding: 4px;
 `;
 
 const PaperDetailPage: React.FunctionComponent<RouteComponentProps> = (props: any) => {

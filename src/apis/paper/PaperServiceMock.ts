@@ -1,5 +1,5 @@
 import { PaperService, PaperIdResponse, PaperListResponse } from "./PaperService";
-import { PaperDraft, PaperInfo, PaperComment } from "../../models/paper";
+import { PaperDraft, PaperInfo, PaperComment, PaperRef } from "../../models/paper";
 import { HttpMethod } from "../HttpService";
 import { sleepMs } from "../../utils";
 
@@ -12,7 +12,7 @@ export const papers: PaperInfo[] = [
   {
     paperId: "1", authors: ["123", "1"], paper: {
       title: "Bug Localization with Semantic and Structural Features using Convolutional Neural Network and Cascade Forest",
-      refs: [{ type: "published", doi: "10.1145/3210459.3210469" }, {
+      refs: [{ type: "published", doi: "10.1145/3210459.3210469", content: "123" }, {
         type: "chainpaper",
         paperId: "2",
         content: "Poor H V. An introduction to signal detection and estimation[M]. Springer Science & Business Media, 2013."
@@ -71,5 +71,41 @@ export class PaperServiceMock extends PaperService {
 
   async commentPaper(paperId: string, commentContent: string) {
 
+  }
+
+  async getPaperRefGraph(paperId: string): Promise<{ refs: PaperRef[] }> {
+    return {
+      refs: [
+        {
+          type: "published",
+          doi: "12312412412421321321",
+          title: "123",
+          content: "123",
+          refs: [],
+        },
+        {
+          type: "chainpaper",
+          title: "Environment paper",
+          content: "content 1",
+          paperId: "123",
+          refs: [
+            {
+              type: "chainpaper",
+              title: "Environment paper",
+              content: "content 1",
+              paperId: "456",
+              refs: [
+                {
+                  type: "chainpaper",
+                  title: "Environment paper",
+                  content: "content 1",
+                  paperId: "456",
+                  refs: []
+                }]
+            }
+          ]
+        },
+      ]
+    };
   }
 }

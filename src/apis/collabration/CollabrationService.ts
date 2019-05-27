@@ -19,10 +19,10 @@ export class CollabrationService extends HttpService {
     });
   }
 
-  async inviteCollabration(paperId: string): Promise<{ collabrationInvitationId: string }> {
+  async inviteCollabration(paperId: string, inviteeId: string): Promise<{ collabrationInvitationId: string }> {
     const data = await this.fetch({
       path: `/collabration/invitation`,
-      body: { paperId },
+      body: { paperId, inviteeId },
       method: HttpMethod.POST,
     });
 

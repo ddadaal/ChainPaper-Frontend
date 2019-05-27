@@ -1,5 +1,5 @@
 import { HttpService, HttpMethod } from "../HttpService";
-import { PaperDraft, PaperInfo, PaperComment } from "../../models/paper";
+import { PaperDraft, PaperInfo, PaperComment, PaperRef } from "../../models/paper";
 
 export interface PaperIdResponse {
   paperId: string;
@@ -106,6 +106,16 @@ export class PaperService extends HttpService {
       method: HttpMethod.POST,
     });
   }
+
+  async getPaperRefGraph(paperId: string): Promise<{ refs: PaperRef[] }> {
+    const data = this.fetch<any>({
+      path: `/papers/${paperId}/refs`,
+      method: HttpMethod.GET,
+    });
+
+    return data;
+  }
+
 
 
 }
