@@ -4,7 +4,7 @@ ChainPaper是一个基于区块链的论文社交平台。
 
 # 使用
 
-https://viccrubs.github.com/ChainPaper-Frontend
+http://120.79.93.123/
 
 注意！由于GitHub Pages提供的域名问题，在使用此地址的时候，需要先点击头部的`首页`按钮回到首页才能正常使用。
 
