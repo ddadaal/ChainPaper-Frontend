@@ -28,7 +28,7 @@ const PaperDetailPage: React.FunctionComponent<RouteComponentProps> = (props: an
 
   return (
     <FunctionLayout>
-      <Query call={getDetail}>
+      <Query call={getDetail} key={props.paperId}>
         {(data, loading) => {
           if (loading) {
             return <Loading />;

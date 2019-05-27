@@ -15,6 +15,7 @@ export const papers: PaperInfo[] = [
       refs: [{ type: "published", doi: "10.1145/3210459.3210469", content: "123" }, {
         type: "chainpaper",
         paperId: "2",
+        title: "123",
         content: "Poor H V. An introduction to signal detection and estimation[M]. Springer Science & Business Media, 2013."
       }],
       keywords: "case study",
@@ -79,7 +80,6 @@ export class PaperServiceMock extends PaperService {
         {
           type: "published",
           doi: "10.1145/3210459.3210469",
-          title: "123",
           content: "123",
           refs: [        {
             type: "chainpaper",

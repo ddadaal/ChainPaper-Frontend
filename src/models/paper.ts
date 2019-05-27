@@ -3,6 +3,7 @@ export type Reference = ({
   doi: string;
 } | {
   type: "chainpaper",
+  title: string;
   paperId: string;
 }) & { content?: string };
 
@@ -35,7 +36,7 @@ export type PaperInfo = {
   state: "open" | "submitted"; // 开放可评论；已提交
 }
 
-export type PaperRef = Reference & { title: string; refs: PaperRef[] };
+export type PaperRef = Reference & { refs: PaperRef[] };
 
 export interface PaperRefGraphNode {
   id: string;
@@ -52,3 +53,12 @@ export type PaperRefGraph = {
   nodes: PaperRefGraphNode[];
   edges: PaperRefGraphEdge[];
 }
+
+export function getRefId(ref: PaperRef) {
+  if (ref.type === "chainpaper") {
+    return ref.paperId;
+  } else {
+    return ref.doi;
+  }
+}
+

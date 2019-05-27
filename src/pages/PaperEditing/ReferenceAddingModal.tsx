@@ -32,6 +32,7 @@ const ReferenceAddingModal: React.FC<Props> = (props) => {
             props.onAdd({
               type: "chainpaper",
               paperId: paperId,
+              title: data.paper.paper.title,
               content: data.paper.authors.join(",") + ":" + data.paper.paper.title + "," + data.paper.uploadTime
             });
           } catch (e) {
