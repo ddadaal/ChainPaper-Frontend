@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/ChainPaper-Frontend/precache-manifest.bf41b7fb8602348e08b3b788dede0bdb.js"
+  "/ChainPaper-Frontend/precache-manifest.913e68d951b94801cb220ea015cb60c4.js"
 );
 
 self.addEventListener('message', (event) => {

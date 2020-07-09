@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e41d5d70b493158ca525b17375e57ddd",
+    "revision": "048e5cd68a0d6136f93045c126eb7d03",
     "url": "/ChainPaper-Frontend/index.html"
   },
   {
@@ -12,11 +12,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ChainPaper-Frontend/static/css/10.2cf7ed33.chunk.css"
   },
   {
-    "revision": "df3f7e5cd2f8d4658e68",
+    "revision": "1ad5d3fab1191bc2a655",
     "url": "/ChainPaper-Frontend/static/css/11.5f317d08.chunk.css"
   },
   {
-    "revision": "7855b8c501b1154d56a2",
+    "revision": "bd42335aba5afa215ffb",
     "url": "/ChainPaper-Frontend/static/css/12.5f317d08.chunk.css"
   },
   {
@@ -36,11 +36,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ChainPaper-Frontend/static/css/8.62a51d95.chunk.css"
   },
   {
-    "revision": "b8517d75c04228300195",
+    "revision": "bb8215b9c006000f743b",
     "url": "/ChainPaper-Frontend/static/css/9.cdd4ebc7.chunk.css"
   },
   {
-    "revision": "624d781f9051cb324efb",
+    "revision": "bfbcdcc027c4243436c4",
     "url": "/ChainPaper-Frontend/static/css/main.bb4c5c64.chunk.css"
   },
   {
@@ -56,32 +56,32 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ChainPaper-Frontend/static/js/10.82e81d1d.chunk.js"
   },
   {
-    "revision": "df3f7e5cd2f8d4658e68",
-    "url": "/ChainPaper-Frontend/static/js/11.91981ffc.chunk.js"
+    "revision": "1ad5d3fab1191bc2a655",
+    "url": "/ChainPaper-Frontend/static/js/11.49055cf8.chunk.js"
   },
   {
-    "revision": "7855b8c501b1154d56a2",
-    "url": "/ChainPaper-Frontend/static/js/12.a1469964.chunk.js"
+    "revision": "bd42335aba5afa215ffb",
+    "url": "/ChainPaper-Frontend/static/js/12.3a793427.chunk.js"
   },
   {
     "revision": "b9c579ee6f4a45b42c41",
     "url": "/ChainPaper-Frontend/static/js/13.0756fc4b.chunk.js"
   },
   {
-    "revision": "a73d58f6c24f70b73640",
-    "url": "/ChainPaper-Frontend/static/js/14.1df2aa9a.chunk.js"
+    "revision": "471ff651d19ca405dc2a",
+    "url": "/ChainPaper-Frontend/static/js/14.e0e2e377.chunk.js"
   },
   {
-    "revision": "b713a67f8b7eb3e33b8e",
-    "url": "/ChainPaper-Frontend/static/js/15.68016aa0.chunk.js"
+    "revision": "46c155096c025dac0312",
+    "url": "/ChainPaper-Frontend/static/js/15.219e2950.chunk.js"
   },
   {
-    "revision": "3cc25b6ce9676671dff9",
-    "url": "/ChainPaper-Frontend/static/js/16.20d6a9f3.chunk.js"
+    "revision": "cbb5614b8bb9667e21f1",
+    "url": "/ChainPaper-Frontend/static/js/16.c1454d9b.chunk.js"
   },
   {
-    "revision": "8cd8b0a3bfbb4bc4469b",
-    "url": "/ChainPaper-Frontend/static/js/17.ff8e08f0.chunk.js"
+    "revision": "4a9888b6c486daf03068",
+    "url": "/ChainPaper-Frontend/static/js/17.fcfd5933.chunk.js"
   },
   {
     "revision": "4de209aba1a8ffb2abfe",
@@ -96,24 +96,24 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ChainPaper-Frontend/static/js/4.4bb521e6.chunk.js"
   },
   {
-    "revision": "50366ae0d93a0f57ee13",
-    "url": "/ChainPaper-Frontend/static/js/5.85eb0d6a.chunk.js"
+    "revision": "4a4565633db7c37527d8",
+    "url": "/ChainPaper-Frontend/static/js/5.01d9a18b.chunk.js"
   },
   {
     "revision": "c38c556564d6dc0391c1",
     "url": "/ChainPaper-Frontend/static/js/8.9bb2c307.chunk.js"
   },
   {
-    "revision": "b8517d75c04228300195",
-    "url": "/ChainPaper-Frontend/static/js/9.39afbadb.chunk.js"
+    "revision": "bb8215b9c006000f743b",
+    "url": "/ChainPaper-Frontend/static/js/9.71427001.chunk.js"
   },
   {
-    "revision": "624d781f9051cb324efb",
-    "url": "/ChainPaper-Frontend/static/js/main.f5046291.chunk.js"
+    "revision": "bfbcdcc027c4243436c4",
+    "url": "/ChainPaper-Frontend/static/js/main.c30cc874.chunk.js"
   },
   {
-    "revision": "cd899fd969d359460a93",
-    "url": "/ChainPaper-Frontend/static/js/runtime~main.3c04ea43.js"
+    "revision": "7c0fc01dce2ba984b00b",
+    "url": "/ChainPaper-Frontend/static/js/runtime~main.2f4e924f.js"
   },
   {
     "revision": "d6444c9e2e59d7c67f33be483efba143",
