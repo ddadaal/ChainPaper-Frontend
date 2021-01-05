@@ -12,7 +12,7 @@
     "@types/react-dom": "^16.8.4",
     "@types/styled-components": "^4.1.15",
     "antd": "^3.19.0",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "babel-plugin-import": "^1.11.2",
     "babel-plugin-styled-components": "^1.10.0",
     "customize-cra": "^0.2.12",
