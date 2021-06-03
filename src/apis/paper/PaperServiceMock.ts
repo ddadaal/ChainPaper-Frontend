@@ -3,9 +3,11 @@ import { PaperDraft, PaperInfo, PaperComment, PaperRef } from "../../models/pape
 import { HttpMethod } from "../HttpService";
 import { sleepMs } from "../../utils";
 
+const now = new Date();
+
 const comments = [
-  { userId: "2", time: "1232132132131", content: "好！", stars: 10 },
-  { userId: "3", time: "1232142141", content: "好！！！", stars: 4 },
+  { userId: "2", time: now.toString(), content: "好！", stars: 10 },
+  { userId: "3", time: now.toString(), content: "好！！！", stars: 4 },
 ];
 
 export const papers: PaperInfo[] = [
@@ -25,7 +27,7 @@ export const papers: PaperInfo[] = [
       conclusion: "1321",
       acknowledgement: "1232132121",
     },
-    uploadTime: "1231232131", score: 10, stars: 10, comments,
+    uploadTime: now.toString(), score: 10, stars: 10, comments,
     state: "open",
   }
 ];

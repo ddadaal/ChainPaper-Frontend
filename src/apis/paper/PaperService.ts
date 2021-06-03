@@ -84,6 +84,7 @@ export class PaperService extends HttpService {
 
   async getPaperStar(paperId: string): Promise<{ stars: number; stared: boolean }> {
     const data = this.fetch({
+      
       path: `/papers/${paperId}/star`,
       method: HttpMethod.GET
     });
